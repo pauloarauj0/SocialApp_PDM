@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F6F6"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textLogin"
+        android:layout_width="172dp"
+        android:layout_height="33dp"
+        android:gravity="center_vertical"
+        android:rotation="0"
+        android:rotationY="0"
+        android:text="@string/login"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.715"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.461" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.452"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textLogin" />
+
+    <EditText
+        android:id="@+id/senha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.452"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:text="@string/sign_in"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageLogin"
+        android:layout_width="240dp"
+        android:layout_height="229dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/loginimage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.602"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/st_small_507x507_pad_600x600_f8f8f8" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

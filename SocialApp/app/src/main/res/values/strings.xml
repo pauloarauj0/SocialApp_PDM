@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Social App</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="loginimage">LoginImage</string>
+    <string name="name">Name</string>
+    <string name="sign_in">Sign In</string>
+    <string name="home">Home</string>
+</resources>
