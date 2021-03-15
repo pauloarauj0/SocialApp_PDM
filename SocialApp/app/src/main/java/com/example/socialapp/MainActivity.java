@@ -7,13 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     private EditText username;
     private EditText senha;
     private Button login;
-
+    private TextView create_login;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +25,9 @@ public class MainActivity extends AppCompatActivity {
         username = findViewById(R.id.username);
         senha = findViewById(R.id.senha);
         login = findViewById(R.id.login);
+        create_login = findViewById(R.id.main_create);
 
+        //clicar no botao login e iniciar sessao
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,15 +40,23 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     if(isValid(input_username,input_senha)){
                         Toast.makeText(MainActivity.this, "Bem vindo! " + input_username, Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(MainActivity.this, CriarLogin.class);
+                        Intent intent = new Intent(MainActivity.this, HomePage.class);
                         startActivity(intent);
-
                     }
                     else{
                         Toast.makeText(MainActivity.this, "Login ou senha incorretos", Toast.LENGTH_SHORT).show();
                     }
                 }
 
+            }
+        });
+
+    //ir para a pagina de criar login
+        create_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CriarLogin.class);
+                startActivity(intent);
             }
         });
     }

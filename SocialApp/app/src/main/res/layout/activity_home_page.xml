@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomePage">
+
+    <Button
+        android:id="@+id/home_settings"
+        android:layout_width="196dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="129dp"
+        android:layout_marginBottom="44dp"
+        android:text="@string/settings"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/home_chat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.893" />
+
+    <Button
+        android:id="@+id/home_chat"
+        android:layout_width="196dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="224dp"
+        android:text="@string/chat"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/home_wc"
+        android:layout_width="231dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="173dp"
+        android:layout_marginLeft="173dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="181dp"
+        android:layout_marginRight="181dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/bem_vindo"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="110dp"
+        android:layout_height="93dp"
+        android:layout_marginBottom="36dp"
+        android:contentDescription="@string/home_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/spongebob_home" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
