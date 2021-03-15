@@ -2,6 +2,7 @@ package com.example.socialapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,7 +29,7 @@ public class HomePage extends AppCompatActivity {
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Log.v("INFO: ", "Clicou em Chat");
             }
         });
 
@@ -37,6 +38,10 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.v("INFO: ", "Clicou em Settings");
+
+                Intent intent = new Intent(HomePage.this, Settings.class);
+                startActivity(intent);
+                finish();
 
             }
         });

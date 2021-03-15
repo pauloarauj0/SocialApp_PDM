@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText senha;
     private Button login;
     private TextView create_login;
+
+    private boolean debugMode = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
+                if(debugMode){
+                    Intent intent = new Intent(MainActivity.this, HomePage.class);
+                    startActivity(intent);
+                    finish();
+                }
+
             }
         });
 
@@ -57,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, CriarLogin.class);
                 startActivity(intent);
+
             }
         });
     }

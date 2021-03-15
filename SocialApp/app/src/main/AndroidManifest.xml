@@ -10,14 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SocialApp">
         <activity
+            android:name=".ChangePassword"
+            android:parentActivityName=".Settings"/>
+        <activity
+            android:name=".Settings"
+            android:parentActivityName=".HomePage" />
+        <activity
             android:name=".HomePage"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".CriarLogin"
-            android:parentActivityName=".MainActivity">
-
-        </activity>
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
