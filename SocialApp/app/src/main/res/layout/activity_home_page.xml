@@ -26,6 +26,7 @@
         android:layout_width="196dp"
         android:layout_height="75dp"
         android:layout_marginBottom="224dp"
+        android:background="@drawable/ic_launcher_background"
         android:text="@string/chat"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -52,7 +53,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/spongebobHome"
         android:layout_width="110dp"
         android:layout_height="93dp"
         android:layout_marginBottom="36dp"
@@ -62,5 +63,17 @@
         app:layout_constraintHorizontal_bias="0.053"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/spongebob_home" />
+
+    <ImageView
+        android:id="@+id/bluetooth_icon"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="45dp"
+        android:contentDescription="@string/bluetooth_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_chat"
+        app:srcCompat="@drawable/bluetooth_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

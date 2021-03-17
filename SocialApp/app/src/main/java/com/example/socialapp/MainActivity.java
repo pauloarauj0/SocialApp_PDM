@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 if(debugMode){
                     Intent intent = new Intent(MainActivity.this, HomePage.class);
                     startActivity(intent);
-                    finish();
+                    //finish();
                 }
 
             }

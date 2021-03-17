@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class HomePage extends AppCompatActivity {
@@ -14,6 +15,7 @@ public class HomePage extends AppCompatActivity {
     private TextView welcomeText;
     private Button settings;
     private Button chat;
+    private ImageView bluetoothBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +26,16 @@ public class HomePage extends AppCompatActivity {
         welcomeText = findViewById(R.id.home_wc);
         settings = findViewById(R.id.home_settings);
         chat = findViewById(R.id.home_chat);
+        bluetoothBtn = findViewById(R.id.bluetooth_icon);
 
         //entrar no chat
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.v("INFO: ", "Clicou em Chat");
+                Log.v("HOMEPAGE ", "Clicou em Enter");
+
+                Intent intent = new Intent(HomePage.this, ChatAndFeed.class);
+                startActivity(intent);
             }
         });
 
@@ -37,11 +43,22 @@ public class HomePage extends AppCompatActivity {
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.v("INFO: ", "Clicou em Settings");
+                Log.v("HOMEPAGE", "Clicou em Settings");
 
                 Intent intent = new Intent(HomePage.this, Settings.class);
                 startActivity(intent);
-                finish();
+                //finish();
+
+            }
+        });
+
+        bluetoothBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v("HOMEPAGE", "Clicou no bluetooth");
+
+                //Intent intent = new Intent(HomePage.this, Settings.class);
+                //startActivity(intent);
 
             }
         });

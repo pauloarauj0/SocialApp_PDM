@@ -13,7 +13,7 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="bem_vindo">Bem Vindo</string>
     <string name="settings">Settings</string>
-    <string name="chat">Chat</string>
+    <string name="chat">Enter</string>
     <string name="home_image">Home Image</string>
     <string name="change">Change!</string>
     <string name="change_password">Change Password</string>
@@ -28,5 +28,9 @@
     <string name="confirmar">Confirmar</string>
     <string name="pass_actual">Pass actual</string>
     <string name="confirmar_nova_pass">Confirmar nova pass</string>
+    <string name="bluetooth_icon">bluetooth icon</string>
+    <string name="feel_free_to_chat_or_check_your_feed">Feel free to chat or check your feed :)</string>
+    <string name="feed">FEED</string>
+    <string name="chatUppercase">CHAT</string>
 
 </resources>

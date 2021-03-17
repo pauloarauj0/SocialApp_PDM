@@ -74,7 +74,7 @@
         app:layout_constraintHorizontal_bias="0.602"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/st_small_507x507_pad_600x600_f8f8f8" />
+        app:srcCompat="@drawable/spongebob_login" />
 
     <TextView
         android:id="@+id/main_create"
