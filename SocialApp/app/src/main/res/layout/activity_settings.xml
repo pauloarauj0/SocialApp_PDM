@@ -7,23 +7,10 @@
     tools:context=".Settings">
 
     <Button
-        android:id="@+id/changeDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="34dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="@string/change"
-        android:textSize="12sp"
-        app:backgroundTint="#FF0000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changeName" />
-
-    <Button
         android:id="@+id/changePass"
         android:layout_width="185dp"
         android:layout_height="70dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="24dp"
         android:text="@string/change_password"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/logout"
@@ -34,7 +21,7 @@
         android:id="@+id/logout"
         android:layout_width="185dp"
         android:layout_height="70dp"
-        android:layout_marginBottom="108dp"
+        android:layout_marginBottom="60dp"
         android:text="@string/logout"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -45,76 +32,88 @@
         android:id="@+id/newName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="124dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/nome_actual"
         android:inputType="textPersonName|text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.372"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/newDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/desc_actual"
-        android:inputType="textShortMessage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newName" />
-
-    <EditText
-        android:id="@+id/newMail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/email_actual"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newDesc" />
-
-    <Button
-        android:id="@+id/changeName"
-        android:layout_width="wrap_content"
-        android:layout_height="34dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="@string/change"
-        android:textSize="12sp"
-        app:backgroundTint="#FF0000"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/changeMail"
         android:layout_width="wrap_content"
         android:layout_height="34dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:text="@string/change"
         android:textSize="12sp"
         app:backgroundTint="#FF0000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/changeDesc" />
 
+    <EditText
+        android:id="@+id/newMail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/email_actual"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.372"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newDesc" />
+
+    <EditText
+        android:id="@+id/newDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/desc_actual"
+        android:inputType="textShortMessage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.372"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newName" />
+
+    <Button
+        android:id="@+id/changeDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/change"
+        android:textSize="12sp"
+        app:backgroundTint="#FF0000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/changeName" />
+
+    <Button
+        android:id="@+id/changeName"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_marginTop="132dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/change"
+        android:textSize="12sp"
+        app:backgroundTint="#FF0000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/newBirthdate"
-        android:layout_width="96dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="83dp"
+        android:layout_width="106dp"
+        android:layout_height="29dp"
+        android:layout_marginBottom="76dp"
         android:autofillHints=""
         android:background="#FFFFFF"
         android:ems="10"
@@ -123,23 +122,19 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/changePass"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newMail" />
+        app:layout_constraintHorizontal_bias="0.735"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/birthdayText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="83dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
+        android:layout_marginBottom="80dp"
         android:text="@string/aniversario"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/changePass"
-        app:layout_constraintEnd_toStartOf="@+id/newBirthdate"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
 

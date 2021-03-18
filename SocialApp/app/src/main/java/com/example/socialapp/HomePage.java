@@ -55,10 +55,10 @@ public class HomePage extends AppCompatActivity {
         bluetoothBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.v("HOMEPAGE", "Clicou no bluetooth");
+                Log.i("HOMEPAGE", "Clicou no bluetooth");
 
-                //Intent intent = new Intent(HomePage.this, Settings.class);
-                //startActivity(intent);
+                Intent intent = new Intent(HomePage.this, Bluetooth.class);
+                startActivity(intent);
 
             }
         });
