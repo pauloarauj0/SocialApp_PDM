@@ -10,15 +10,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     private EditText username;
     private EditText senha;
-    private Button login;
-    private TextView create_login;
+    static User [] users = new User[100];
 
-    private boolean debugMode = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
         username = findViewById(R.id.username);
         senha = findViewById(R.id.senha);
-        login = findViewById(R.id.login);
-        create_login = findViewById(R.id.main_create);
+        Button login = findViewById(R.id.login);
+        TextView create_login = findViewById(R.id.main_create);
 
         //clicar no botao login e iniciar sessao
         login.setOnClickListener(new View.OnClickListener() {
@@ -50,11 +47,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
-                if(debugMode){
-                    Intent intent = new Intent(MainActivity.this, HomePage.class);
-                    startActivity(intent);
-                    //finish();
-                }
+                //debug
+                debugmode();
+
 
             }
         });
@@ -70,9 +65,32 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private boolean isValid(String input_username, String input_senha) {
-        if(input_username.equals("admin") && input_senha.equals("123"))
-            return true;
+    /**
+     * Debug mode: Sem necessidade de colocar user nem password
+     */
+    private void debugmode() {
+        boolean debug = false;
+        if(debug){
+            Intent intent = new Intent(MainActivity.this, HomePage.class);
+            startActivity(intent);
+            //finish();
+        }
+    }
+
+    /**
+     *  verificar se o username e a password estao corretos
+     * @param input_username string
+     * @param input_senha string
+     * @return boolean
+     */
+    private boolean isValid( String input_username, String input_senha) {
+        //Toast.makeText(MainActivity.this, "Existem "+User.nUser+ " usuarios", Toast.LENGTH_SHORT).show();
+
+        for(int i=0; i< User.nUser; i++){
+            if(users[i].username.equals(input_username) && users[i].password.equals(input_senha))
+                 return true;
+        }
+
         return false;
     }
 }

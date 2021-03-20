@@ -46,7 +46,8 @@ public class CriarLogin extends AppCompatActivity {
 
                 }
                 else{
-                    //criar a conta
+                    createAccount(name,pass,email);
+
                     Toast.makeText(CriarLogin.this, "Login criado com sucesso ", Toast.LENGTH_SHORT).show();
                     Log.v("INFO: ", "Conta criada :\n " );
 
@@ -56,6 +57,19 @@ public class CriarLogin extends AppCompatActivity {
         });
 
     }
+
+    /**
+     * Criar uma nova conta
+     *
+     * @param name String
+     * @param pass String
+     * @param email String
+     */
+    private void createAccount(String name, String pass,String email) {
+        User user = new User(name,pass,email);
+        MainActivity.users[User.nUser-1] = user;
+    }
+
     @Override
     public void onBackPressed(){
         finish();
