@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
      * @return boolean True caso seja um user registado e com as credenciais corretas
      */
     private boolean isValid( String input_username, String input_senha) {
-        Toast.makeText(MainActivity.this, "Existem "+User.nUser+ " usuarios", Toast.LENGTH_SHORT).show();
 
         for(int i=0; i< User.nUser; i++){
             if(users[i]==null){
