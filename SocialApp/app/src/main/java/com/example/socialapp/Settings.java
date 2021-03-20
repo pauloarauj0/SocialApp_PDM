@@ -109,8 +109,9 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("SETTINGS", "Clicked on logout");
-                Intent intent = new Intent(Settings.this, MainActivity.class);
-                startActivity(intent);
+               Intent intent = new Intent(Settings.this, MainActivity.class);
+               startActivity(intent);
+
             }
         });
     }

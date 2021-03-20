@@ -37,19 +37,19 @@ public class CriarLogin extends AppCompatActivity {
 
                 if(name.isEmpty() || pass.isEmpty() || confirm_pass.isEmpty() || email.isEmpty()){
                     Toast.makeText(CriarLogin.this, "Um dos campos não foi preenchido", Toast.LENGTH_SHORT).show();
-                    Log.v("INFO: ", "Parametros vazios" );
+                    Log.v("CRIARLOGIN: ", "Parametros vazios" );
 
                 }
                 else if(!(pass.equals(confirm_pass))){
                     Toast.makeText(CriarLogin.this, "As senhas não coincidem ", Toast.LENGTH_SHORT).show();
-                    Log.v("INFO: ", "senhas diferentes" + "Senha1: "+pass + " Senha2 "+ confirm_pass);
+                    Log.v("CRIARLOGIN: ", "senhas diferentes" + "Senha1: "+pass + " Senha2 "+ confirm_pass);
 
                 }
                 else{
                     createAccount(name,pass,email);
 
                     Toast.makeText(CriarLogin.this, "Login criado com sucesso ", Toast.LENGTH_SHORT).show();
-                    Log.v("INFO: ", "Conta criada :\n " );
+                    Log.v("CRIARLOGIN: ", "Conta criada :\n " );
 
                     finish();
                 }

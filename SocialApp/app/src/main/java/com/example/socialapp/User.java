@@ -1,5 +1,7 @@
 package com.example.socialapp;
 
+import android.util.Log;
+
 public class User {
     /**
      * Classe para criar novos usuarios
@@ -13,9 +15,13 @@ public class User {
     String password="";
 
     User(String username, String password, String email){
+        Log.v("CREATED USER", "Novo user criado\n " );
         nUser++;
         this.username = username;
         this.password = password;
         this.email = email;
+    }
+    User(){
+
     }
 }
