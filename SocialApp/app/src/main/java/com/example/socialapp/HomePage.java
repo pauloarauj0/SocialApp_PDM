@@ -57,7 +57,7 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View v) {
                 Log.i("HOMEPAGE", "Clicou no bluetooth");
 
-                Intent intent = new Intent(HomePage.this, Bluetooth.class);
+                Intent intent = new Intent(HomePage.this, Bluetooth_chat.class);
                 startActivity(intent);
 
             }
