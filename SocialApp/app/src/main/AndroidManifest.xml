@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -13,9 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SocialApp">
-        <activity android:name=".DeviceList"></activity>
-        <activity android:name=".Bluetooth_chat" />
-        <activity android:name=".Bluetooth" />
+        <activity android:name=".Bluetooth"></activity>
         <activity
             android:name=".ChatAndFeed"
             android:parentActivityName=".HomePage" />
