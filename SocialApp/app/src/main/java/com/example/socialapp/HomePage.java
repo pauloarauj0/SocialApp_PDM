@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class HomePage extends AppCompatActivity {
 
@@ -16,6 +17,7 @@ public class HomePage extends AppCompatActivity {
     private Button settings;
     private Button chat;
     private ImageView bluetoothBtn;
+    private Button info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,18 @@ public class HomePage extends AppCompatActivity {
         settings = findViewById(R.id.home_settings);
         chat = findViewById(R.id.home_chat);
         bluetoothBtn = findViewById(R.id.bluetooth_icon);
+        info = findViewById(R.id.home_info);
+
+        //info
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(HomePage.this, "User: "+MainActivity.UserAtual.username  +"\n"+ "Email: "+ MainActivity.UserAtual.email+"\n"+
+                        "Senha: "+MainActivity.UserAtual.password +"\n"+ "Data: "+MainActivity.UserAtual.aniversario+"\n"
+                        +"Descricao: "+ MainActivity.UserAtual.descricao, Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         //entrar no chat
         chat.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +61,6 @@ public class HomePage extends AppCompatActivity {
 
                 Intent intent = new Intent(HomePage.this, Settings.class);
                 startActivity(intent);
-                //finish();
 
             }
         });

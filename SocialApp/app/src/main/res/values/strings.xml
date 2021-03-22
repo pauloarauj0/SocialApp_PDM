@@ -9,7 +9,6 @@
     <string name="clique_aqui_para_criar_uma_conta">Clique aqui para criar uma conta</string>
     <string name="criar_conta">Criar conta</string>
     <string name="novo_registo">Novo registo</string>
-    <string name="email">Email</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="bem_vindo">Bem Vindo</string>
     <string name="settings">Settings</string>
@@ -38,5 +37,7 @@
     <string name="paired_devices">Paired devices</string>
     <string name="available_devices">Available devices</string>
     <string name="scan_devices">Scan Devices</string>
+    <string name="email">Email</string>
+    <string name="info">Info</string>
 
 </resources>

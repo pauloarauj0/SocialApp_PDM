@@ -65,6 +65,7 @@ public class Settings extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 Log.d("SETTINGS", "Day/Month/Year: " + dayOfMonth + "/" + month + "/" + year);
                 String date = dayOfMonth + "/" + month + "/" + year;
+                MainActivity.UserAtual.setAniversario(date);
                 viewDate.setText(date);
             }
         };
@@ -74,6 +75,8 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("SETTINGS", "Clicked on change name");
+                String nName = nameField.getText().toString();
+                MainActivity.UserAtual.changeName(nName);
             }
         });
 
@@ -82,6 +85,8 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("SETTINGS", "Clicked on change desc");
+                String nDesc = descField.getText().toString();
+                MainActivity.UserAtual.changeDesc(nDesc);
             }
         });
 
@@ -90,6 +95,8 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("SETTINGS", "Clicked on change mail");
+                String nEmail = emailField.getText().toString();
+                MainActivity.UserAtual.changeEmail(nEmail);
             }
         });
 

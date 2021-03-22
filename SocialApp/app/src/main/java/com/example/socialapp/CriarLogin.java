@@ -46,29 +46,27 @@ public class CriarLogin extends AppCompatActivity {
 
                 }
                 else{
-                    createAccount(name,pass,email);
+                    User user = new User(name,pass,email);
+                    if(user.addUser()){
+                        Toast.makeText(CriarLogin.this, "Login criado com sucesso ", Toast.LENGTH_SHORT).show();
+                        Log.v("CRIARLOGIN: ", "Conta criada :\n " );
+                        finish();
+                    }
+                    else{
+                        Toast.makeText(CriarLogin.this, "Email em uso ", Toast.LENGTH_SHORT).show();
+                        Log.v("CRIARLOGIN: ", "Conta invalida:\n " );
+                    }
 
-                    Toast.makeText(CriarLogin.this, "Login criado com sucesso ", Toast.LENGTH_SHORT).show();
-                    Log.v("CRIARLOGIN: ", "Conta criada :\n " );
 
-                    finish();
+
+
                 }
             }
         });
 
     }
 
-    /**
-     * Criar uma nova conta
-     *
-     * @param name String
-     * @param pass String
-     * @param email String
-     */
-    private void createAccount(String name, String pass,String email) {
-        User user = new User(name,pass,email);
-        MainActivity.users[User.nUser-1] = user;
-    }
+
 
     @Override
     public void onBackPressed(){
