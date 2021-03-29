@@ -75,9 +75,17 @@ public class Settings extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("SETTINGS", "Clicked on change name");
                 String nName = nameField.getText().toString();
-                if(MainActivity.UserAtual.changeName(nName)){
-                    changeNameBtn.setBackgroundColor(Color.GREEN);
+                if(nName.isEmpty()){
+                    Toast.makeText(Settings.this, "Insira um nome válido", Toast.LENGTH_SHORT).show();
                 }
+                else{
+                    if(MainActivity.UserAtual.changeName(nName)){
+                        changeNameBtn.setBackgroundColor(Color.GREEN);
+                        Toast.makeText(Settings.this, "Nome alterado para: "+nName, Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+
             }
         });
 
@@ -87,8 +95,11 @@ public class Settings extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("SETTINGS", "Clicked on change desc");
                 String nDesc = descField.getText().toString();
-                if(MainActivity.UserAtual.changeDesc(nDesc))
+                if(MainActivity.UserAtual.changeDesc(nDesc)){
                     changeDescBtn.setBackgroundColor(Color.GREEN);
+                    Toast.makeText(Settings.this, "Descrição alterada para: "+nDesc, Toast.LENGTH_SHORT).show();
+
+                }
             }
         });
 
@@ -98,14 +109,25 @@ public class Settings extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("SETTINGS", "Clicked on change mail");
                 String nEmail = emailField.getText().toString();
-
-                if(MainActivity.UserAtual.changeEmail(nEmail))
-                    changeEmailBtn.setBackgroundColor(Color.GREEN);
-                else{
-                    Log.d("SETTINGS", "Email in use");
-                    Toast.makeText(Settings.this, "Email inválido", Toast.LENGTH_SHORT).show();
-
+                if(nEmail.isEmpty()){
+                    Toast.makeText(Settings.this, "Insira um email válido", Toast.LENGTH_SHORT).show();
                 }
+                else{
+                    if(MainActivity.UserAtual.changeEmail(nEmail)){
+                        changeEmailBtn.setBackgroundColor(Color.GREEN);
+                        Toast.makeText(Settings.this, "Email alterado para: "+nEmail, Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    else{
+                        Log.d("SETTINGS", "Email in use");
+                        Toast.makeText(Settings.this, "Email inválido", Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+
+
+
 
             }
         });
