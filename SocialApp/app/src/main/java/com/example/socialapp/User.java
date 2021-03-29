@@ -97,38 +97,56 @@ public class User {
     /**
      * Altera o nome  e guarda a informaçao
      * @param nName Novo nome
+     *@return True caso seja alterado com sucesso
      */
-    public void changeName(String nName) {
+    public boolean changeName(String nName) {
         int pos = MainActivity.UserAtual.findMatch();
         if(pos!=INVALID){
             MainActivity.UserAtual.username = nName;
             MainActivity.users[pos] = MainActivity.UserAtual;
+            return true;
         }
+        return false;
     }
 
     /**
      * Altera a descriçao  e guarda a informaçao
      * @param nDesc Nova descriçao
+     *@return True caso seja alterado com sucesso
      */
-    public void changeDesc(String nDesc) {
+    public boolean changeDesc(String nDesc) {
         int pos = MainActivity.UserAtual.findMatch();
         if(pos!=INVALID){
             MainActivity.UserAtual.descricao = nDesc;
             MainActivity.users[pos] = MainActivity.UserAtual;
+            return true;
         }
+        return false;
     }
 
     /**
      * Altera o email  e guarda a informaçao
      * @param nEmail Novo email
+     * @return True caso seja alterado com sucesso e False caso ja esteja em uso
      */
-    public void changeEmail(String nEmail) {
+    public boolean changeEmail(String nEmail) {
+        boolean change = true;
         int pos = MainActivity.UserAtual.findMatch();
         if(pos!=INVALID){
-            MainActivity.UserAtual.email = nEmail;
-            MainActivity.users[pos] = MainActivity.UserAtual;
+            //verificar se o email nao esta em uso
+            for(int i =0; i< nUser; i++){
+                if (MainActivity.users[i].email.equals(nEmail)) {
+                    change = false;
+                    break;
+                }
+            }
+            if(change){
+                MainActivity.UserAtual.email = nEmail;
+                MainActivity.users[pos] = MainActivity.UserAtual;
+                return true;
+            }
         }
-
+    return false;
     }
 }
 

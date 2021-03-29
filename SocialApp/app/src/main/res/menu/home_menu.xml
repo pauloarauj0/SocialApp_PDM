@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/options"
+        android:icon="@drawable/ic_settings_icon"
+        android:title="@string/settings"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/settings"
+                android:title="@string/settings">
+            </item>
+            <item
+                android:id="@+id/change_password"
+                android:title="@string/change_password">
+            </item>
+
+            <item
+                android:id="@+id/logout"
+                android:title="@string/logout">
+
+            </item>
+        </menu>
+
+    </item>
+</menu>

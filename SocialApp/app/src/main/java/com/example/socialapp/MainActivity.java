@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     static User [] users = new User[100];
     static User UserAtual = new User("user","atual");
 
+    private boolean DEBUG = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,18 +42,24 @@ public class MainActivity extends AppCompatActivity {
                 String input_senha =  senha.getText().toString();
 
 
+                if(DEBUG){
+                    debugMode();
+                }
+                else{
+                    if(input_email.isEmpty() || input_senha.isEmpty()){
+                        Toast.makeText(MainActivity.this, "Um dos campos não foi preenchido", Toast.LENGTH_SHORT).show();
+                    }else{
+                        if(confirmLogin(input_email,input_senha)){
+                            Toast.makeText(MainActivity.this, "Bem vindo! " + input_email, Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(MainActivity.this, HomePage.class);
+                            startActivity(intent);
+                        }
+                        else{
+                            Toast.makeText(MainActivity.this, "Email ou senha incorretos", Toast.LENGTH_SHORT).show();
+                        }
 
-                if(input_email.isEmpty() || input_senha.isEmpty()){
-                    Toast.makeText(MainActivity.this, "Um dos campos não foi preenchido", Toast.LENGTH_SHORT).show();
-                }else{
-                    if(confirmLogin(input_email,input_senha)){
-                        Toast.makeText(MainActivity.this, "Bem vindo! " + input_email, Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(MainActivity.this, HomePage.class);
-                        startActivity(intent);
                     }
-                    else{
-                        Toast.makeText(MainActivity.this, "Email ou senha incorretos", Toast.LENGTH_SHORT).show();
-                    }
+
                 }
 
             }
@@ -66,6 +74,14 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    /**
+     * Saltar a criaçao de conta
+     */
+    private void debugMode() {
+        Intent intent = new Intent(MainActivity.this, HomePage.class);
+        startActivity(intent);
     }
 
     /**

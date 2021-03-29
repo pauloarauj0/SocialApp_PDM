@@ -11,12 +11,10 @@
     <string name="novo_registo">Novo registo</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="bem_vindo">Bem Vindo</string>
-    <string name="settings">Settings</string>
     <string name="chat">Enter</string>
     <string name="home_image">Home Image</string>
     <string name="change">Change!</string>
     <string name="change_password">Change Password</string>
-    <string name="logout">Logout</string>
     <string name="nome_actual">Nome actual</string>
     <string name="desc_actual">Desc Actual</string>
     <string name="email_actual">Email actual</string>
@@ -39,5 +37,7 @@
     <string name="scan_devices">Scan Devices</string>
     <string name="email">Email</string>
     <string name="info">Info</string>
+    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
 
 </resources>

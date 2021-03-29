@@ -1,10 +1,14 @@
 package com.example.socialapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,9 +28,12 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+
+
+
+
         //FAZER: colocar nome do user a seguir a bem vindo
         welcomeText = findViewById(R.id.home_wc);
-        settings = findViewById(R.id.home_settings);
         chat = findViewById(R.id.home_chat);
         bluetoothBtn = findViewById(R.id.bluetooth_icon);
         info = findViewById(R.id.home_info);
@@ -53,17 +60,7 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-        //modificar perfil
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.v("HOMEPAGE", "Clicou em Settings");
 
-                Intent intent = new Intent(HomePage.this, Settings.class);
-                startActivity(intent);
-
-            }
-        });
 
         bluetoothBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,4 +74,31 @@ public class HomePage extends AppCompatActivity {
         });
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.home_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.settings:
+                Intent intent = new Intent(HomePage.this, Settings.class);
+                startActivity(intent);
+                return true;
+            case R.id.logout:
+                Intent intent2 = new Intent(HomePage.this, MainActivity.class);
+                startActivity(intent2);
+                return true;
+            case R.id.change_password:
+                Intent intent3 = new Intent(HomePage.this, ChangePassword.class);
+                startActivity(intent3);
+                return true;
+            default:
+                return true;
+        }
+    }
 }
+

@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -39,8 +40,6 @@ public class Settings extends AppCompatActivity {
         changeNameBtn = (Button) findViewById(R.id.changeName);
         changeDescBtn = (Button) findViewById(R.id.changeDesc);
         changeEmailBtn = (Button) findViewById(R.id.changeMail);
-        changePasswordBtn = (Button) findViewById(R.id.changePass);
-        logoutBtn = (Button) findViewById(R.id.logout);
 
         viewDate = (TextView) findViewById(R.id.newBirthdate);
 
@@ -76,7 +75,9 @@ public class Settings extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("SETTINGS", "Clicked on change name");
                 String nName = nameField.getText().toString();
-                MainActivity.UserAtual.changeName(nName);
+                if(MainActivity.UserAtual.changeName(nName)){
+                    changeNameBtn.setBackgroundColor(Color.GREEN);
+                }
             }
         });
 
@@ -86,7 +87,8 @@ public class Settings extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("SETTINGS", "Clicked on change desc");
                 String nDesc = descField.getText().toString();
-                MainActivity.UserAtual.changeDesc(nDesc);
+                if(MainActivity.UserAtual.changeDesc(nDesc))
+                    changeDescBtn.setBackgroundColor(Color.GREEN);
             }
         });
 
@@ -96,31 +98,21 @@ public class Settings extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("SETTINGS", "Clicked on change mail");
                 String nEmail = emailField.getText().toString();
-                MainActivity.UserAtual.changeEmail(nEmail);
-            }
-        });
 
-        //placeholders para os botoes de mudanca
+                if(MainActivity.UserAtual.changeEmail(nEmail))
+                    changeEmailBtn.setBackgroundColor(Color.GREEN);
+                else{
+                    Log.d("SETTINGS", "Email in use");
+                    Toast.makeText(Settings.this, "Email inválido", Toast.LENGTH_SHORT).show();
 
-        changePasswordBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("SETTINGS", "Clicked on change pass");
-
-                Intent intent = new Intent(Settings.this, ChangePassword.class);
-                startActivity(intent);
-            }
-        });
-
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("SETTINGS", "Clicked on logout");
-               Intent intent = new Intent(Settings.this, MainActivity.class);
-               startActivity(intent);
+                }
 
             }
         });
+
+
+
+
     }
 
 }
