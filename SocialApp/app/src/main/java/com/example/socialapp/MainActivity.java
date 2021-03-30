@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     static User [] users = new User[100];
     static User UserAtual = new User("user","atual");
 
-    private boolean DEBUG = false;
+    private boolean DEBUG = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

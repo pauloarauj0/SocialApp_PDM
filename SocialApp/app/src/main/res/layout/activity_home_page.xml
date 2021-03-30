@@ -53,20 +53,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/spongebob_home" />
 
-    <ImageView
-        android:id="@+id/bluetooth_icon"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="112dp"
-        android:contentDescription="@string/bluetooth_icon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_chat"
-        app:layout_constraintVertical_bias="0.594"
-        app:srcCompat="@drawable/bluetooth_btn" />
-
     <Button
         android:id="@+id/home_info"
         android:layout_width="wrap_content"
