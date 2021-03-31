@@ -102,7 +102,7 @@ public class BluetoothChatFragment extends Fragment {
             Toast.makeText(activity, "Bluetooth is not available", Toast.LENGTH_LONG).show();
             activity.finish();
         }
-        Log.v("BLUETOOTHCHATFRAGMENT ", "I've gone here");
+        Log.v(TAG, "I've gone here");
     }
 
     @Override
@@ -391,7 +391,7 @@ public class BluetoothChatFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.bluetooth_chat, menu);
-        Log.v("BLUETOOTHCHATFRAGMENT ", "I'm inflating");
+        Log.v(TAG, "I'm inflating");
     }
 
     @Override

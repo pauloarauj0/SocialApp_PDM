@@ -67,13 +67,8 @@
         <![CDATA[
 
 
-            This application allows two Android devices to carry out two-way text chat over
-            Bluetooth. It demonstrates all the fundamental Bluetooth API capabilities, such as:
-              (1) Scanning for other Bluetooth devices
-              (2) Querying the local Bluetooth adapter for paired Bluetooth devices
-              (3) Establishing RFCOMM channels/sockets
-              (4) Connecting to a remote device
-              (5) Transferring data over Bluetooth
+            Clique no icone bluetooth do topo da tela para se conectar a um dispositivo
+            a qual voce ja esta pairado.\nClique no outro icone para ligar o bluetooth ou se conectar de forma insegura
 
 
         ]]>

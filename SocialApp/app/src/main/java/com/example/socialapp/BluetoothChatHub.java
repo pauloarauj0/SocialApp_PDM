@@ -18,10 +18,6 @@
 package com.example.socialapp;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ViewAnimator;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -36,10 +32,6 @@ import androidx.fragment.app.FragmentTransaction;
  */
 public class BluetoothChatHub extends AppCompatActivity {
 
-    public static final String TAG = "MainActivity";
-
-    // Whether the Log Fragment is currently shown
-    private boolean mLogShown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,47 +45,5 @@ public class BluetoothChatHub extends AppCompatActivity {
             transaction.commit();
         }
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.main, menu);
-        Log.v("BLUETOOTHCHATHUB", "INFLATING OWN MENU");
-        Log.v("BLUETOOTHCHATHUB", "INFLATING OWN MENU");
-        Log.v("BLUETOOTHCHATHUB", "INFLATING OWN MENU");
-        Log.v("BLUETOOTHCHATHUB", "INFLATING OWN MENU");
-        Log.v("BLUETOOTHCHATHUB", "INFLATING OWN MENU");
-        Log.v("BLUETOOTHCHATHUB", "INFLATING OWN MENU");
-        return true;
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem logToggle = menu.findItem(R.id.menu_toggle_log);
-        logToggle.setVisible(findViewById(R.id.sample_output) instanceof ViewAnimator);
-        logToggle.setTitle("title");
-
-        return super.onPrepareOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_toggle_log) {
-            mLogShown = !mLogShown;
-            ViewAnimator output = findViewById(R.id.sample_output);
-            if (mLogShown) {
-                output.setDisplayedChild(1);
-            } else {
-                output.setDisplayedChild(0);
-            }
-            invalidateOptionsMenu();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * Create a chain of targets that will receive log data... not!
-     */
 
 }
