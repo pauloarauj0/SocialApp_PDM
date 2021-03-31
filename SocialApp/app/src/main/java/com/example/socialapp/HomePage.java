@@ -35,7 +35,7 @@ public class HomePage extends AppCompatActivity {
         //FAZER: colocar nome do user a seguir a bem vindo
         welcomeText = findViewById(R.id.home_wc);
         chat = findViewById(R.id.home_chat);
-        bluetoothBtn = findViewById(R.id.bluetooth_icon);
+
         info = findViewById(R.id.home_info);
 
         //info
@@ -62,16 +62,7 @@ public class HomePage extends AppCompatActivity {
 
 
 
-        bluetoothBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("HOMEPAGE", "Clicou no bluetooth");
 
-                Intent intent = new Intent(HomePage.this, Bluetooth_chat.class);
-                startActivity(intent);
-
-            }
-        });
 
     }
     @Override
