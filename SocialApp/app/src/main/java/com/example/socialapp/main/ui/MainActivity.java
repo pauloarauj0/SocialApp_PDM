@@ -27,10 +27,10 @@ public class MainActivity extends AppCompatActivity {
     List<Account> accounts = new ArrayList<>();
     AppDatabase database;
 
+    //conta atual
+    public static Account AccAtual;
 
-    //usuarios regitados
-    static User [] users = new User[100];
-    static User UserAtual = new User("user","atual");
+
 
     private boolean DEBUG = false;
 
@@ -96,6 +96,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void showAccounts(){
+        accounts = database.getDao().getAllAccount();
+        for(Account a : accounts){
+            Log.i("MAIN", "EMAIL: "+a.getEmail()+ " Pass: "+a.getUserPass());
+        }
+    }
+
     /**
      * Confima o login
      * @param input_email Email do user
@@ -104,14 +111,12 @@ public class MainActivity extends AppCompatActivity {
      */
 
     private boolean confirmLogin(String input_email, String input_senha){
-        accounts = database.getDao().getAllAccount();
-        for(Account a : accounts){
-            Log.i("MAIN", "EMAIL: "+a.getEmail()+ " Pass: "+a.getUserPass());
-        }
-        //Log.i("MAIN", "database: "+database.getDao().findAccount(input_email, input_senha));
-        int encontrou = database.getDao().findAccount(input_email, input_senha);
-        if(encontrou > 0 ){
+        showAccounts();
+        int VALID_ROWS = 1;
+
+        if(database.getDao().findAccount(input_email, input_senha) == VALID_ROWS ){
                 Log.i("MAIN", "Login com sucesso");
+                setAccountAtual(input_email,input_senha);
                 return true;
         }
         Log.i("MAIN", "Login Falhado");
@@ -120,12 +125,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Define quem é o user atual da sessao
-     * @param pos Pos do user no array users
+     *  Define quem é a conta atual da sessao
+     * @param input_email Email
+     * @param input_senha Senha
      */
 
-    private void setUserAtual(int pos) {
-            UserAtual = users[pos];
+    private void setAccountAtual(String input_email, String input_senha) {
+        AccAtual = database.getDao().findAccountAtual(input_email,input_senha);
 
     }
 

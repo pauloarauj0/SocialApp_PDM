@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.socialapp.R;
+import com.example.socialapp.data.base.Account;
+import com.example.socialapp.data.base.AppDatabase;
 
 import java.util.Calendar;
 
@@ -26,12 +28,13 @@ public class Settings extends AppCompatActivity {
 
     private EditText nameField, descField, emailField;
     private Button changeNameBtn, changeDescBtn, changeEmailBtn, changePasswordBtn, logoutBtn;
-
-
+    AppDatabase database;
+    private int INVALID = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        database = AppDatabase.getDatabase(Settings.this);
 
         nameField = (EditText) findViewById(R.id.newName);
         descField = (EditText) findViewById(R.id.newDesc);
@@ -64,7 +67,8 @@ public class Settings extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 Log.d("SETTINGS", "Day/Month/Year: " + dayOfMonth + "/" + month + "/" + year);
                 String date = dayOfMonth + "/" + month + "/" + year;
-                MainActivity.UserAtual.setAniversario(date);
+
+                MainActivity.AccAtual.setUserAniversario(date);
                 viewDate.setText(date);
             }
         };
@@ -79,7 +83,8 @@ public class Settings extends AppCompatActivity {
                     Toast.makeText(Settings.this, "Insira um nome válido", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    if(MainActivity.UserAtual.changeName(nName)){
+                    MainActivity.AccAtual.setUserName(nName);
+                    if(database.getDao().updateAccount(MainActivity.AccAtual)!=INVALID){
                         changeNameBtn.setBackgroundColor(Color.GREEN);
                         Toast.makeText(Settings.this, "Nome alterado para: "+nName, Toast.LENGTH_SHORT).show();
 
@@ -95,7 +100,8 @@ public class Settings extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("SETTINGS", "Clicked on change desc");
                 String nDesc = descField.getText().toString();
-                if(MainActivity.UserAtual.changeDesc(nDesc)){
+                MainActivity.AccAtual.setUserDesc(nDesc);
+                if(database.getDao().updateAccount(MainActivity.AccAtual)!=INVALID){
                     changeDescBtn.setBackgroundColor(Color.GREEN);
                     Toast.makeText(Settings.this, "Descrição alterada para: "+nDesc, Toast.LENGTH_SHORT).show();
 
@@ -113,13 +119,24 @@ public class Settings extends AppCompatActivity {
                     Toast.makeText(Settings.this, "Insira um email válido", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    if(MainActivity.UserAtual.changeEmail(nEmail)){
+
+                    //conta backup
+                    Account BackupAcc = backup(MainActivity.AccAtual);
+
+                    MainActivity.AccAtual.setEmail(nEmail);
+
+                    //ver se o email e valido para inserir
+                    if(database.getDao().insertAccount(MainActivity.AccAtual)!=INVALID){
+                        //apagar a conta com email antigo
+                        database.getDao().deleteAccount(BackupAcc);
+
                         changeEmailBtn.setBackgroundColor(Color.GREEN);
                         Toast.makeText(Settings.this, "Email alterado para: "+nEmail, Toast.LENGTH_SHORT).show();
 
                     }
 
                     else{
+                        MainActivity.AccAtual.setEmail(BackupAcc.getEmail());
                         Log.d("SETTINGS", "Email in use");
                         Toast.makeText(Settings.this, "Email inválido", Toast.LENGTH_SHORT).show();
 
@@ -134,6 +151,23 @@ public class Settings extends AppCompatActivity {
 
 
 
+
+    }
+
+    /**
+     * Cria um backup da conta atual
+     * @param AccAtual Conta atual
+     * @return backup
+     */
+    private Account backup(Account AccAtual) {
+        Account BackupAcc = new Account();
+        BackupAcc.setEmail(AccAtual.getEmail());
+        BackupAcc.setUserPass(AccAtual.getUserPass());
+        BackupAcc.setUserDesc(AccAtual.getUserDesc());
+        BackupAcc.setUserName(AccAtual.getUserName());
+        BackupAcc.setUserAniversario(AccAtual.getUserAniversario());
+
+        return BackupAcc;
 
     }
 

@@ -44,9 +44,9 @@ public class HomePage extends AppCompatActivity {
         info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(HomePage.this, "User: "+MainActivity.UserAtual.username  +"\n"+ "Email: "+ MainActivity.UserAtual.email+"\n"+
-                        "Senha: "+MainActivity.UserAtual.password +"\n"+ "Data: "+MainActivity.UserAtual.aniversario+"\n"
-                        +"Descricao: "+ MainActivity.UserAtual.descricao, Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomePage.this, "User: "+MainActivity.AccAtual.getUserName()  +"\n"+ "Email: "+ MainActivity.AccAtual.getEmail()+"\n"+
+                        "Senha: "+MainActivity.AccAtual.getUserPass() +"\n"+ "Data: "+MainActivity.AccAtual.getUserAniversario()+"\n"
+                        +"Descricao: "+ MainActivity.AccAtual.getUserDesc(), Toast.LENGTH_SHORT).show();
             }
         });
 

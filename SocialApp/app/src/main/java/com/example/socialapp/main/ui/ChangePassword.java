@@ -10,15 +10,21 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.socialapp.R;
+import com.example.socialapp.data.base.AppDatabase;
 
 public class ChangePassword extends AppCompatActivity {
 
     private EditText pass, npass, npassConf;
     private Button confirmBtn;
+    private int INVALID = -1;
+
+    AppDatabase database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
+        database = AppDatabase.getDatabase(ChangePassword.this);
 
         pass = (EditText) findViewById(R.id.oldPass);
         npass = (EditText) findViewById(R.id.newPass);
@@ -41,7 +47,7 @@ public class ChangePassword extends AppCompatActivity {
                     Log.d("CHANGEPASSWORD", "Parametros vazios" );
                 }
                 //verificar se a senha antiga coincide
-                else if( !(passStr.equals(MainActivity.UserAtual.password))){
+                else if( !(passStr.equals(MainActivity.AccAtual.getUserPass()))){
                     Toast.makeText(ChangePassword.this, "Password antiga incorreta ", Toast.LENGTH_SHORT).show();
                     Log.d("CHANGEPASSWORD", "Senha antiga incorreta");
 
@@ -54,7 +60,8 @@ public class ChangePassword extends AppCompatActivity {
                 }
                 //trocar senhas
                 else{
-                    if(MainActivity.UserAtual.changePassword(npassStr)){
+                    MainActivity.AccAtual.setUserPass(npassStr);
+                    if(database.getDao().updateAccount(MainActivity.AccAtual)!=INVALID){
                         Toast.makeText(ChangePassword.this, "Password trocado com sucesso ", Toast.LENGTH_SHORT).show();
                         finish();
                     }

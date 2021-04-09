@@ -18,6 +18,10 @@ public interface AccountDao {
     @Query("SELECT COUNT(*) FROM account WHERE email LIKE :input_email and user_senha LIKE :input_senha" )
     int findAccount(String input_email, String input_senha);
 
+    @Query("SELECT * FROM account WHERE email LIKE :input_email and user_senha LIKE :input_senha" )
+    Account findAccountAtual(String input_email, String input_senha);
+
+
     //return -1 caso nao consiga colocar
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     long insertAccount(Account user);

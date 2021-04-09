@@ -17,6 +17,7 @@ import com.google.android.material.appbar.AppBarLayout;
 public class CriarLogin extends AppCompatActivity {
     private EditText loginField, passField, confirmField,emailField;
     private AppDatabase database;
+    long INVALID = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,8 @@ public class CriarLogin extends AppCompatActivity {
                     account.setUserPass(pass);
 
                     long inseriu = database.getDao().insertAccount(account);
-                    if(inseriu!=-1){
+
+                    if(inseriu!=INVALID){
 
                         Toast.makeText(CriarLogin.this, "Login criado com sucesso ", Toast.LENGTH_SHORT).show();
                         Log.v("CRIARLOGIN: ", "Conta criada :\n " );

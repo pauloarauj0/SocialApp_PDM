@@ -21,6 +21,16 @@ public class Account implements Serializable {
     @ColumnInfo(name = "user_senha")
      private String userPass;
 
+    @ColumnInfo(name = "user_aniversario")
+    private String userAniversario;
+
+    public String getUserAniversario() {
+        return userAniversario;
+    }
+
+    public void setUserAniversario(String userAniversario) {
+        this.userAniversario = userAniversario;
+    }
 
     public String getEmail() {
         return email;
