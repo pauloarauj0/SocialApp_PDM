@@ -1,6 +1,6 @@
 
 
-package com.example.socialapp;
+package com.example.socialapp.bluetooth;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
@@ -32,9 +32,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
+import com.example.socialapp.R;
 
 
- /**
+/**
  * Fragmento criado por BluetoothChatHub. Controla o chat e as mensagens
  */
 public class BluetoothChatFragment extends Fragment {
@@ -341,7 +342,7 @@ public class BluetoothChatFragment extends Fragment {
         if (extras == null) {
             return;
         }
-        String address = extras.getString(com.example.socialapp.DeviceListActivity.EXTRA_DEVICE_ADDRESS);
+        String address = extras.getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
         // pegar o objeto BluetoothDevice
         BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
         // conectar

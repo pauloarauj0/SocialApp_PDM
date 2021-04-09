@@ -1,4 +1,4 @@
-package com.example.socialapp;
+package com.example.socialapp.main.ui;
 
 import android.util.Log;
 

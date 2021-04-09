@@ -1,4 +1,4 @@
-package com.example.socialapp;
+package com.example.socialapp.main.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.socialapp.R;
+import com.example.socialapp.bluetooth.BluetoothChatHub;
 
 public class ChatAndFeed extends AppCompatActivity {
     private Button feed, chat;

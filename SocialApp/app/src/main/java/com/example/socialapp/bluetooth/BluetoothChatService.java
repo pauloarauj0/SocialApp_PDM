@@ -1,4 +1,4 @@
-package com.example.socialapp;
+package com.example.socialapp.bluetooth;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -64,7 +64,7 @@ public class BluetoothChatService {
         mNewState = mState;
 
         // Give the new state to the Handler so the UI Activity can update
-        mHandler.obtainMessage(com.example.socialapp.Constants.MESSAGE_STATE_CHANGE, mNewState, -1).sendToTarget();
+        mHandler.obtainMessage(Constants.MESSAGE_STATE_CHANGE, mNewState, -1).sendToTarget();
     }
 
     /**
@@ -164,9 +164,9 @@ public class BluetoothChatService {
         mConnectedThread.start();
 
         // Mandar o nome do dispositivo de volta a atividade da UI
-        Message msg = mHandler.obtainMessage(com.example.socialapp.Constants.MESSAGE_DEVICE_NAME);
+        Message msg = mHandler.obtainMessage(Constants.MESSAGE_DEVICE_NAME);
         Bundle bundle = new Bundle();
-        bundle.putString(com.example.socialapp.Constants.DEVICE_NAME, device.getName());
+        bundle.putString(Constants.DEVICE_NAME, device.getName());
         msg.setData(bundle);
         mHandler.sendMessage(msg);
         // atualizar a UI
@@ -221,9 +221,9 @@ public class BluetoothChatService {
      */
     private void connectionFailed() {
         // Mandar a mensagem de falha de volta
-        Message msg = mHandler.obtainMessage(com.example.socialapp.Constants.MESSAGE_TOAST);
+        Message msg = mHandler.obtainMessage(Constants.MESSAGE_TOAST);
         Bundle bundle = new Bundle();
-        bundle.putString(com.example.socialapp.Constants.TOAST, "Unable to connect device");
+        bundle.putString(Constants.TOAST, "Unable to connect device");
         msg.setData(bundle);
         mHandler.sendMessage(msg);
 
@@ -240,9 +240,9 @@ public class BluetoothChatService {
      */
     private void connectionLost() {
         // Mandar a mensagem de falha de volta a UI
-        Message msg = mHandler.obtainMessage(com.example.socialapp.Constants.MESSAGE_TOAST);
+        Message msg = mHandler.obtainMessage(Constants.MESSAGE_TOAST);
         Bundle bundle = new Bundle();
-        bundle.putString(com.example.socialapp.Constants.TOAST, "Device connection was lost");
+        bundle.putString(Constants.TOAST, "Device connection was lost");
         msg.setData(bundle);
         mHandler.sendMessage(msg);
 
@@ -437,7 +437,7 @@ public class BluetoothChatService {
                     bytes = mmInStream.read(buffer);
 
                     // Mandar os bytes obtidos a atividade UI
-                    mHandler.obtainMessage(com.example.socialapp.Constants.MESSAGE_READ, bytes, -1, buffer)
+                    mHandler.obtainMessage(Constants.MESSAGE_READ, bytes, -1, buffer)
                             .sendToTarget();
                 } catch (IOException e) {
                     Log.e("BluetoothChatService", "disconnected", e);
@@ -457,7 +457,7 @@ public class BluetoothChatService {
                 mmOutStream.write(buffer);
 
                 // Mandar a mensagem de volta a atividade UI
-                mHandler.obtainMessage(com.example.socialapp.Constants.MESSAGE_WRITE, -1, -1, buffer)
+                mHandler.obtainMessage(Constants.MESSAGE_WRITE, -1, -1, buffer)
                         .sendToTarget();
             } catch (IOException e) {
                 Log.e("BluetoothChatService", "Exception during write", e);

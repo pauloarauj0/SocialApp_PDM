@@ -1,4 +1,4 @@
-package com.example.socialapp;
+package com.example.socialapp.bluetooth;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+
+import com.example.socialapp.R;
 
 import java.util.Set;
 

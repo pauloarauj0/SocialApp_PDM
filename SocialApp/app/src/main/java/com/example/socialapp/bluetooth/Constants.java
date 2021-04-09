@@ -1,5 +1,5 @@
 
-package com.example.socialapp;
+package com.example.socialapp.bluetooth;
 
 /**
  * Constantes usadas por BluetoothChatService e a UI

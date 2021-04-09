@@ -1,4 +1,4 @@
-package com.example.socialapp;
+package com.example.socialapp.main.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.socialapp.R;
 
 public class HomePage extends AppCompatActivity {
 

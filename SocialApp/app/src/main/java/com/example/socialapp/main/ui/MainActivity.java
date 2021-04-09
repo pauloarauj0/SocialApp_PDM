@@ -1,4 +1,4 @@
-package com.example.socialapp;
+package com.example.socialapp.main.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.socialapp.R;
+import com.example.socialapp.data.base.Account;
+import com.example.socialapp.data.base.AppDatabase;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     static User [] users = new User[100];
     static User UserAtual = new User("user","atual");
 
-    private boolean DEBUG = true;
+    private boolean DEBUG = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
      * @param input_senha Senha do user
      * @return True caso confirme o login
      */
+    /*
     private boolean confirmLogin(String input_email, String input_senha) {
         User login = new User(input_email,input_senha);
         int pos = login.findMatch();
@@ -101,6 +106,19 @@ public class MainActivity extends AppCompatActivity {
         }
         Log.i("MAIN", "Login Falhado");
         return false;
+    }
+
+     */
+    private boolean confirmLogin(String input_email, String input_senha){
+        AppDatabase db = AppDatabase.getDatabase(this.getApplicationContext());
+        Account user = new Account(input_email,input_senha);
+        db.getDao().insertAccount(user);
+
+
+        Toast.makeText(MainActivity.this, "Contas "+ db.getDao().getAllAccount(), Toast.LENGTH_SHORT).show();
+
+
+        return true;
     }
 
     /**
