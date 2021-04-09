@@ -15,12 +15,18 @@ import com.example.socialapp.R;
 import com.example.socialapp.data.base.Account;
 import com.example.socialapp.data.base.AppDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private static final int INVALID = -1;
     private EditText email;
     private EditText senha;
+    List<Account> accounts = new ArrayList<>();
+    AppDatabase database;
+
 
     //usuarios regitados
     static User [] users = new User[100];
@@ -30,8 +36,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        database = AppDatabase.getDatabase(MainActivity.this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        database.getDao().deleteDatabase();
 
         email = findViewById(R.id.email);
         senha = findViewById(R.id.senha);
@@ -89,36 +97,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Confima o login e define o user atual
+     * Confima o login
      * @param input_email Email do user
      * @param input_senha Senha do user
      * @return True caso confirme o login
      */
-    /*
-    private boolean confirmLogin(String input_email, String input_senha) {
-        User login = new User(input_email,input_senha);
-        int pos = login.findMatch();
 
-        if(pos!=INVALID){
-            setUserAtual(pos);
-            Log.i("MAIN", "Login com sucesso");
-            return true;
+    private boolean confirmLogin(String input_email, String input_senha){
+        accounts = database.getDao().getAllAccount();
+        for(Account a : accounts){
+            Log.i("MAIN", "EMAIL: "+a.getEmail()+ " Pass: "+a.getUserPass());
+        }
+        //Log.i("MAIN", "database: "+database.getDao().findAccount(input_email, input_senha));
+        int encontrou = database.getDao().findAccount(input_email, input_senha);
+        if(encontrou > 0 ){
+                Log.i("MAIN", "Login com sucesso");
+                return true;
         }
         Log.i("MAIN", "Login Falhado");
         return false;
-    }
 
-     */
-    private boolean confirmLogin(String input_email, String input_senha){
-        AppDatabase db = AppDatabase.getDatabase(this.getApplicationContext());
-        Account user = new Account(input_email,input_senha);
-        db.getDao().insertAccount(user);
-
-
-        Toast.makeText(MainActivity.this, "Contas "+ db.getDao().getAllAccount(), Toast.LENGTH_SHORT).show();
-
-
-        return true;
     }
 
     /**

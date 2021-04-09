@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase;
 
 
 
-@Database(entities = {Account.class}, version = 1)
+@Database(entities = {Account.class}, version = 1, exportSchema = false)
 
 public abstract class AppDatabase extends RoomDatabase {
     public abstract AccountDao getDao();
@@ -20,7 +20,7 @@ public abstract class AppDatabase extends RoomDatabase {
      * @return instacia da base de dados
      */
 
-    public static AppDatabase getDatabase(final Context context) {
+    public synchronized static AppDatabase getDatabase(final Context context) {
         if (instance == null) {
             synchronized (AppDatabase.class) {
                 instance = Room.databaseBuilder(context, AppDatabase.class, "DATABASE").allowMainThreadQueries().build();

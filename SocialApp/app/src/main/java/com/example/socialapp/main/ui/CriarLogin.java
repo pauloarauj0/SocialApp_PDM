@@ -10,15 +10,19 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.socialapp.R;
+import com.example.socialapp.data.base.Account;
+import com.example.socialapp.data.base.AppDatabase;
+import com.google.android.material.appbar.AppBarLayout;
 
 public class CriarLogin extends AppCompatActivity {
     private EditText loginField, passField, confirmField,emailField;
-
+    private AppDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_criar_login);
+        database = AppDatabase.getDatabase(CriarLogin.this);
 
         Button create_login = findViewById(R.id.reg_create);
         loginField = findViewById(R.id.reg_name);
@@ -48,8 +52,14 @@ public class CriarLogin extends AppCompatActivity {
 
                 }
                 else{
-                    User user = new User(name,pass,email);
-                    if(user.addUser()){
+                    Account account = new Account();
+                    account.setEmail(email);
+                    account.setUserName(name);
+                    account.setUserPass(pass);
+
+                    long inseriu = database.getDao().insertAccount(account);
+                    if(inseriu!=-1){
+
                         Toast.makeText(CriarLogin.this, "Login criado com sucesso ", Toast.LENGTH_SHORT).show();
                         Log.v("CRIARLOGIN: ", "Conta criada :\n " );
                         finish();

@@ -3,6 +3,7 @@ package com.example.socialapp.data.base;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -14,25 +15,26 @@ public interface AccountDao {
     @Query("SELECT * FROM account")
     List<Account> getAllAccount();
 
-    @Insert
-    void insertAccount(Account user);
+    @Query("SELECT * FROM account WHERE email LIKE :input_email and user_senha LIKE :input_senha" )
+    int findAccount(String input_email, String input_senha);
+
+    //return -1 caso nao consiga colocar
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    long insertAccount(Account user);
 
     @Delete
-    void deleteUser(Account user);
-/*
-    @Update
-    void updateName(String name);
+    void deleteAccount(Account user);
 
-    @Update
-    void updateEmail(String email);
+    @Delete
+    void reset(List<Account> accounts);
 
-    @Update
-    void updateSenha(String senha);
+    @Query("DELETE FROM account")
+    void deleteDatabase();
 
-    @Update
-    void updateDesc(String desc);
+    //return -1 caso nao consiga colocar
+    @Update (onConflict = OnConflictStrategy.IGNORE)
+    int updateAccount(Account account);
 
- */
 
 
 }
