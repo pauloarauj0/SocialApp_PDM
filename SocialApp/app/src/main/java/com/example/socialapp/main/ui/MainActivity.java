@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         database = AppDatabase.getDatabase(MainActivity.this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        database.getDao().deleteDatabase();
+
 
         email = findViewById(R.id.email);
         senha = findViewById(R.id.senha);
