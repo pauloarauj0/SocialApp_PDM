@@ -73,5 +73,7 @@
 
         ]]>
     </string>
+    <string name="nomeuser">NomeUser</string>
+    <string name="textview">TextView</string>
 
 </resources>

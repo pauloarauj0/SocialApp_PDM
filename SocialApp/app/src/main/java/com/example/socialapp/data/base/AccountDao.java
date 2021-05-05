@@ -5,6 +5,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 
 
@@ -26,6 +27,9 @@ public interface AccountDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     long insertAccount(Account user);
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    long insertPost(Posts post);
+
     @Delete
     void deleteAccount(Account user);
 
@@ -39,6 +43,9 @@ public interface AccountDao {
     @Update (onConflict = OnConflictStrategy.IGNORE)
     int updateAccount(Account account);
 
+    @Transaction
+    @Query("SELECT * FROM Account where user_name LIKE :username")
+    public List<UserWithPost> getUserPost(String username);
 
 
 }

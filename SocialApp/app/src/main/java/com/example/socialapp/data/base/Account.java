@@ -24,6 +24,18 @@ public class Account implements Serializable {
     @ColumnInfo(name = "user_aniversario")
     private String userAniversario;
 
+    @ColumnInfo(name = "user_post")
+    private int userPostID;
+
+
+    public int getUserPostID() {
+        return userPostID;
+    }
+
+    public void setUserPostID(int userPostID) {
+        this.userPostID = userPostID;
+    }
+
     public String getUserAniversario() {
         return userAniversario;
     }
@@ -65,3 +77,5 @@ public class Account implements Serializable {
         this.userPass = userPass;
     }
 }
+
+

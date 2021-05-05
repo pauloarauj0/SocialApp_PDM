@@ -14,6 +14,9 @@ import android.widget.Toast;
 import com.example.socialapp.R;
 import com.example.socialapp.data.base.Account;
 import com.example.socialapp.data.base.AppDatabase;
+import com.example.socialapp.data.base.Posts;
+import com.example.socialapp.data.base.UserWithPost;
+import com.example.socialapp.recyclerview.Feed;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,8 +65,18 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Um dos campos não foi preenchido", Toast.LENGTH_SHORT).show();
                     }else{
                         if(confirmLogin(input_email,input_senha)){
+                            Posts p = new Posts();
+                            p.setMessage("oi");
+                            p.setPost_author(AccAtual.getUserName());
+
+                            database.getDao().insertPost(p);
+
                             Toast.makeText(MainActivity.this, "Bem vindo! " + input_email, Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(MainActivity.this, HomePage.class);
+                            //Intent intent = new Intent(MainActivity.this, HomePage.class);
+                            List<UserWithPost> t  =  database.getDao().getUserPost(AccAtual.getUserName());
+
+                            Log.i("MAIN", "Post: "+t.get(0).posts.get(0).getMessage() + " Nime:"+ t.get(0).user.getUserName());
+                            Intent intent = new Intent(MainActivity.this, Feed.class);
                             startActivity(intent);
                         }
                         else{
@@ -100,6 +113,8 @@ public class MainActivity extends AppCompatActivity {
         accounts = database.getDao().getAllAccount();
         for(Account a : accounts){
             Log.i("MAIN", "EMAIL: "+a.getEmail()+ " Pass: "+a.getUserPass());
+
+
         }
     }
 

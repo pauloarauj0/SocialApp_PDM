@@ -35,6 +35,10 @@
         <activity
             android:name=".main.ui.HomePage"
             android:parentActivityName=".main.ui.MainActivity" />
+
+        <activity
+            android:name=".recyclerview.Feed"
+            android:parentActivityName=".main.ui.MainActivity" />
         <activity
             android:name=".main.ui.CriarLogin"
             android:parentActivityName=".main.ui.MainActivity" />

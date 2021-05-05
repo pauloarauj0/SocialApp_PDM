@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase;
 
 
 
-@Database(entities = {Account.class}, version = 1, exportSchema = false)
+@Database(entities = {Account.class, Posts.class}, version = 1, exportSchema = false)
 
 public abstract class AppDatabase extends RoomDatabase {
     public abstract AccountDao getDao();
@@ -27,7 +27,6 @@ public abstract class AppDatabase extends RoomDatabase {
             }
         }
         return instance;
-
     }
 
 
