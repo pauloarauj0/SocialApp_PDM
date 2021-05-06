@@ -39,9 +39,11 @@
         <activity
             android:name=".recyclerview.Feed"
             android:parentActivityName=".main.ui.MainActivity" />
+
         <activity
             android:name=".main.ui.CriarLogin"
             android:parentActivityName=".main.ui.MainActivity" />
+
         <activity android:name=".main.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

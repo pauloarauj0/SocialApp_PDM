@@ -1,6 +1,7 @@
 package com.example.socialapp.recyclerview;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +23,9 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    private ArrayList<String> p_owner = new ArrayList<>();
+    private ArrayList<String> p_owner;
     private Context context;
     private List<UserWithPost> user_post = new ArrayList<>();
-
     AppDatabase database;
 
     public RecyclerViewAdapter(ArrayList<String> p_owner,Context context) {
@@ -36,6 +36,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private void getUserPost(){
         for(String x : p_owner){
             user_post = database.getDao().getUserPost(x);
+
         }
 
     }
@@ -44,6 +45,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         database = AppDatabase.getDatabase(context);
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.feed_list,parent,false);

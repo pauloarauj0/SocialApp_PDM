@@ -1,8 +1,10 @@
 package com.example.socialapp.recyclerview;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,7 +26,6 @@ public class Feed extends AppCompatActivity {
     RecyclerView mRecyclerView;
     RecyclerViewAdapter mAdapter;
     RecyclerView.LayoutManager mLayoutManager;
-    Map<Account, Posts> m = new HashMap<>();
     AppDatabase database;
 
 
@@ -36,20 +37,23 @@ public class Feed extends AppCompatActivity {
         }
        return names;
     }
-
+    void printNames(ArrayList<String> l){
+        for(String s : l){
+            Log.i("FEED", s+"  \n");
+        }
+    }
    @Override
    public void onCreate(Bundle savedInstanceState) {
        database = AppDatabase.getDatabase(Feed.this);
-
        super.onCreate(savedInstanceState);
        setContentView(R.layout.activity_feed);
+       printNames(getAllNames());
 
        mRecyclerView = findViewById(R.id.recycler_view);
-       mRecyclerView.setHasFixedSize(true);
-       mLayoutManager = new LinearLayoutManager(this);
-       mAdapter = new RecyclerViewAdapter(getAllNames(),this);
-
+       mAdapter = new RecyclerViewAdapter(getAllNames(),getApplicationContext());
+       mLayoutManager = new LinearLayoutManager(getApplicationContext());
        mRecyclerView.setLayoutManager(mLayoutManager);
+       mRecyclerView.setItemAnimator(new DefaultItemAnimator());
        mRecyclerView.setAdapter(mAdapter);
 
    }
