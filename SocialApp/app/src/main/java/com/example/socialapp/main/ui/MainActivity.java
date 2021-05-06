@@ -14,8 +14,7 @@ import android.widget.Toast;
 import com.example.socialapp.R;
 import com.example.socialapp.data.base.Account;
 import com.example.socialapp.data.base.AppDatabase;
-import com.example.socialapp.data.base.Posts;
-import com.example.socialapp.data.base.UserWithPost;
+import com.example.socialapp.data.base.Post;
 import com.example.socialapp.recyclerview.Feed;
 
 import java.util.ArrayList;
@@ -65,18 +64,21 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Um dos campos não foi preenchido", Toast.LENGTH_SHORT).show();
                     }else{
                         if(confirmLogin(input_email,input_senha)){
-                            Posts p = new Posts();
-                            p.setMessage("oi");
-                            p.setPost_author(AccAtual.getUserName());
-
-                            database.getDao().insertPost(p);
-
                             Toast.makeText(MainActivity.this, "Bem vindo! " + input_email, Toast.LENGTH_SHORT).show();
                             //Intent intent = new Intent(MainActivity.this, HomePage.class);
-                            List<UserWithPost> t  =  database.getDao().getUserPost(AccAtual.getUserName());
 
-                            Log.i("MAIN", "Post: "+t.get(0).posts.get(0).getMessage() + " Nime:"+ t.get(0).user.getUserName());
+                            //-------------------PARA APAGAR ----------------------
+                            //gerar os posts
+                            ArrayList<Post> posts = postsGenerate();
+
+                            //guardar na base de dados
+                            for(Post p : posts){
+                                database.getDao().insertPost(p);
+                            }
+
                             Intent intent = new Intent(MainActivity.this, Feed.class);
+                            //-------------------PARA APAGAR ----------------------
+                            
                             startActivity(intent);
                         }
                         else{
@@ -99,6 +101,21 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    /**
+     * Generate random posts to debug
+     * @return list os posts
+     */
+    private ArrayList<Post> postsGenerate() {
+    ArrayList<Post> r = new ArrayList<>();
+        for(int i=0;i<50;i++){
+            Post p = new Post();
+            p.setMessage("A"+i);
+            p.setPost_author("A" + i);
+            r.add(p);
+        }
+        return r;
     }
 
     /**

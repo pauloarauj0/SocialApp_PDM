@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 import java.io.Serializable;
 
 @Entity
-public class Posts implements Serializable {
+public class Post implements Serializable {
     @PrimaryKey (autoGenerate = true)
     long postID;
 

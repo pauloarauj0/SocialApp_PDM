@@ -5,14 +5,16 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import androidx.room.Transaction;
 import androidx.room.Update;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Dao
 public interface AccountDao {
+
+    //----------------------------ACCOUNT----------------------------
     @Query("SELECT * FROM account")
     List<Account> getAllAccount();
 
@@ -27,9 +29,6 @@ public interface AccountDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     long insertAccount(Account user);
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    long insertPost(Posts post);
-
     @Delete
     void deleteAccount(Account user);
 
@@ -43,9 +42,19 @@ public interface AccountDao {
     @Update (onConflict = OnConflictStrategy.IGNORE)
     int updateAccount(Account account);
 
-    @Transaction
-    @Query("SELECT * FROM Account where user_name LIKE :username")
-    public List<UserWithPost> getUserPost(String username);
+
+
+    //----------------------------POST----------------------------
+    @Insert
+    void insertPost(Post post);
+
+    @Delete
+    void deletePost(Post post);
+
+    @Query("SELECT * FROM post")
+    List<Post> getAllPosts();
+
+
 
 
 }
