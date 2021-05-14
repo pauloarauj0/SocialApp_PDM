@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -49,7 +50,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         holder.owner.setText(current.getPost_author());
         holder.post_content.setText(current.getMessage());
-
+        holder.image.setImageResource(R.drawable.person);
     }
 
     @Override
@@ -61,9 +62,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         TextView owner;
         TextView post_content;
-
+        ImageView image;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            image = itemView.findViewById(R.id.person_image);
             owner = itemView.findViewById(R.id.post_owner);
             post_content = itemView.findViewById(R.id.post);
 

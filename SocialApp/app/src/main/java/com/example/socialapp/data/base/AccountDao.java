@@ -36,7 +36,7 @@ public interface AccountDao {
     void reset(List<Account> accounts);
 
     @Query("DELETE FROM account")
-    void deleteDatabase();
+    void deleteAllAccount();
 
     //return -1 caso nao consiga colocar
     @Update (onConflict = OnConflictStrategy.IGNORE)
@@ -50,6 +50,9 @@ public interface AccountDao {
 
     @Delete
     void deletePost(Post post);
+
+    @Query("DELETE FROM post")
+    void deleteAllPost();
 
     @Query("SELECT * FROM post")
     List<Post> getAllPosts();

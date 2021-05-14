@@ -65,20 +65,7 @@ public class MainActivity extends AppCompatActivity {
                     }else{
                         if(confirmLogin(input_email,input_senha)){
                             Toast.makeText(MainActivity.this, "Bem vindo! " + input_email, Toast.LENGTH_SHORT).show();
-                            //Intent intent = new Intent(MainActivity.this, HomePage.class);
-
-                            //-------------------PARA APAGAR ----------------------
-                            //gerar os posts
-                            ArrayList<Post> posts = postsGenerate();
-
-                            //guardar na base de dados
-                            for(Post p : posts){
-                                database.getDao().insertPost(p);
-                            }
-
-                            Intent intent = new Intent(MainActivity.this, Feed.class);
-                            //-------------------PARA APAGAR ----------------------
-                            
+                            Intent intent = new Intent(MainActivity.this, HomePage.class);
                             startActivity(intent);
                         }
                         else{
@@ -103,20 +90,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Generate random posts to debug
-     * @return list os posts
-     */
-    private ArrayList<Post> postsGenerate() {
-    ArrayList<Post> r = new ArrayList<>();
-        for(int i=0;i<50;i++){
-            Post p = new Post();
-            p.setMessage("A"+i);
-            p.setPost_author("A" + i);
-            r.add(p);
-        }
-        return r;
-    }
+
 
     /**
      * Saltar a criaçao de conta
