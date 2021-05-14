@@ -16,28 +16,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.socialapp.R;
+import com.example.socialapp.bluetooth.BluetoothChatHub;
+import com.example.socialapp.data.base.AppDatabase;
+import com.example.socialapp.recyclerview.Feed;
 
 public class HomePage extends AppCompatActivity {
 
-    private TextView welcomeText;
-    private Button settings;
     private Button chat;
-    private ImageView bluetoothBtn;
     private Button info;
+    private Button feed;
+    AppDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-
-
-
-
         //FAZER: colocar nome do user a seguir a bem vindo
-        welcomeText = findViewById(R.id.home_wc);
         chat = findViewById(R.id.home_chat);
-
+        feed = findViewById(R.id.feed);
         info = findViewById(R.id.home_info);
 
         //info
@@ -55,9 +52,18 @@ public class HomePage extends AppCompatActivity {
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.v("HOMEPAGE ", "Clicou em Enter");
+                Log.v("HOMEPAGE ", "Clicou em Chat");
 
-                Intent intent = new Intent(HomePage.this, ChatAndFeed.class);
+                Intent intent = new Intent(HomePage.this, BluetoothChatHub.class);
+                startActivity(intent);
+            }
+        });
+
+        feed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v("HOMEPAGE ", "Clicou em Feed");
+                Intent intent = new Intent(HomePage.this, Feed.class);
                 startActivity(intent);
             }
         });

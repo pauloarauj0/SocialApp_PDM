@@ -16,6 +16,7 @@
         <activity
             android:name=".bluetooth.BluetoothChatHub"
             android:configChanges="orientation|keyboardHidden"
+            android:parentActivityName=".main.ui.HomePage"
             android:label="@string/app_name" />
 
         <activity
@@ -23,9 +24,6 @@
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/select_device"
             android:theme="@android:style/Theme.Holo.Dialog" />
-        <activity
-            android:name=".main.ui.ChatAndFeed"
-            android:parentActivityName=".main.ui.HomePage" />
         <activity
             android:name=".main.ui.ChangePassword"
             android:parentActivityName=".main.ui.Settings" />
@@ -38,7 +36,7 @@
 
         <activity
             android:name=".recyclerview.Feed"
-            android:parentActivityName=".main.ui.MainActivity" />
+            android:parentActivityName=".main.ui.HomePage" />
 
         <activity
             android:name=".main.ui.CriarLogin"
