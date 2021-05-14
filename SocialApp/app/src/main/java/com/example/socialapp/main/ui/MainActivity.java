@@ -91,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     /**
      * Saltar a criaçao de conta
      */
