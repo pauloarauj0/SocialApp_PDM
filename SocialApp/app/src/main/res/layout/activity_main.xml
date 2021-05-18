@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F6F6"
+    android:background="#E0FFFF"
     tools:context=".main.ui.MainActivity">
 
     <TextView
@@ -15,6 +15,7 @@
         android:rotation="0"
         android:rotationY="0"
         android:text="@string/login"
+        android:textColor="#656161"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

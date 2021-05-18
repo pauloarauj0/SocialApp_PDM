@@ -18,7 +18,9 @@
       android:orientation="vertical"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
+      android:background="#E0FFFF"
       android:id="@+id/sample_main_layout">
+
 
     <ViewAnimator
           android:id="@+id/sample_output"
