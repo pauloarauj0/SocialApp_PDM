@@ -27,7 +27,7 @@ public class Settings extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener datePick;
 
     private EditText nameField, descField, emailField;
-    private Button changeNameBtn, changeDescBtn, changeEmailBtn, changePasswordBtn, logoutBtn;
+    private Button changeNameBtn, changeDescBtn, changeEmailBtn;
     AppDatabase database;
     private int INVALID = -1;
     @Override
@@ -40,11 +40,19 @@ public class Settings extends AppCompatActivity {
         descField = (EditText) findViewById(R.id.newDesc);
         emailField = (EditText) findViewById(R.id.newMail);
 
+        //atribuir os valores
+        nameField.setText(MainActivity.AccAtual.getUserName());
+        descField.setText(MainActivity.AccAtual.getUserDesc());
+        emailField.setText(MainActivity.AccAtual.getEmail());
+
+
         changeNameBtn = (Button) findViewById(R.id.changeName);
         changeDescBtn = (Button) findViewById(R.id.changeDesc);
         changeEmailBtn = (Button) findViewById(R.id.changeMail);
 
         viewDate = (TextView) findViewById(R.id.newBirthdate);
+
+
 
 
         //metodo para trocar a data

@@ -24,7 +24,6 @@ public class HomePage extends AppCompatActivity {
 
     private Button chat;
     private Button info;
-    private Button feed;
     AppDatabase database;
 
     @Override
@@ -32,9 +31,8 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        //FAZER: colocar nome do user a seguir a bem vindo
+
         chat = findViewById(R.id.home_chat);
-        feed = findViewById(R.id.feed);
         info = findViewById(R.id.home_info);
 
         //info
@@ -59,14 +57,6 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-        feed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.v("HOMEPAGE ", "Clicou em Feed");
-                Intent intent = new Intent(HomePage.this, Feed.class);
-                startActivity(intent);
-            }
-        });
 
 
 
@@ -94,6 +84,10 @@ public class HomePage extends AppCompatActivity {
             case R.id.change_password:
                 Intent intent3 = new Intent(HomePage.this, ChangePassword.class);
                 startActivity(intent3);
+                return true;
+            case R.id.feed:
+                Intent intent4 = new Intent(HomePage.this, Feed.class);
+                startActivity(intent4);
                 return true;
             default:
                 return true;

@@ -2,6 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/feedMenu"
+        android:icon="@drawable/person"
+        android:title="@string/settings"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/feed"
+                android:title="@string/feed" />
+        </menu>
+    </item>
+
+    <item
         android:id="@+id/options"
         android:icon="@drawable/ic_settings_icon"
         android:title="@string/settings"
@@ -23,5 +35,10 @@
             </item>
         </menu>
 
+
     </item>
+
+
+
+
 </menu>
