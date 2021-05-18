@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,34 +19,25 @@ import android.widget.Toast;
 import com.example.socialapp.R;
 import com.example.socialapp.bluetooth.BluetoothChatHub;
 import com.example.socialapp.data.base.AppDatabase;
+import com.example.socialapp.data.base.Post;
 import com.example.socialapp.recyclerview.Feed;
 
 public class HomePage extends AppCompatActivity {
 
     private Button chat;
-    private Button info;
+    private Button post;
+    private EditText textField;
     AppDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-
+        database = AppDatabase.getDatabase(HomePage.this);
 
         chat = findViewById(R.id.home_chat);
-        info = findViewById(R.id.home_info);
-
-        //info
-        info.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(HomePage.this, "User: "+MainActivity.AccAtual.getUserName()  +"\n"+ "Email: "+ MainActivity.AccAtual.getEmail()+"\n"+
-                        "Senha: "+MainActivity.AccAtual.getUserPass() +"\n"+ "Data: "+MainActivity.AccAtual.getUserAniversario()+"\n"
-                        +"Descricao: "+ MainActivity.AccAtual.getUserDesc(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
+        post = findViewById(R.id.post_btn);
+        textField = findViewById(R.id.insert_post);
         //entrar no chat
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +49,25 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
+        post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v("HOMEPAGE ", "Clicou em Post");
+                String message = textField.getText().toString();
+                if(message.equals("")){
+                    Toast.makeText(HomePage.this, "Post vazio", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Post p = new Post();
+                    p.setPost_author(MainActivity.AccAtual.getUserName());
+                    p.setMessage(message);
+                    database.getDao().insertPost(p);
+                    textField.setText("");
+                    Toast.makeText(HomePage.this, "Post publicado", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
 
 
 
@@ -89,6 +100,10 @@ public class HomePage extends AppCompatActivity {
                 Intent intent4 = new Intent(HomePage.this, Feed.class);
                 startActivity(intent4);
                 return true;
+            case R.id.perfil:
+                Toast.makeText(HomePage.this, "User: "+MainActivity.AccAtual.getUserName()  +"\n"+ "Email: "+ MainActivity.AccAtual.getEmail()+"\n"+
+                "Senha: "+MainActivity.AccAtual.getUserPass() +"\n"+ "Data: "+MainActivity.AccAtual.getUserAniversario()+"\n"
+                  +"Descricao: "+ MainActivity.AccAtual.getUserDesc(), Toast.LENGTH_LONG).show();
             default:
                 return true;
         }

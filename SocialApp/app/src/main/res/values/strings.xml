@@ -76,5 +76,8 @@
     <string name="nomeuser">NomeUser</string>
     <string name="textview">TextView</string>
     <string name="person_image">person image</string>
+    <string name="post">POST!!!</string>
+    <string name="escreva_aqui">Escreva aqui</string>
+    <string name="profile">profile</string>
 
 </resources>
