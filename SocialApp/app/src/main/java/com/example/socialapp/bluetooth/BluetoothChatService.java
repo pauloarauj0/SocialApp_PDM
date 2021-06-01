@@ -11,9 +11,13 @@ import android.os.Message;
 import android.util.Log;
 
 
+import com.example.socialapp.data.base.AppDatabase;
+import com.example.socialapp.data.base.Post;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -22,6 +26,9 @@ import java.util.UUID;
  * estabelecida.
  */
 public class BluetoothChatService {
+
+    AppDatabase database;
+
 
     private static final String NAME_SECURE = "BluetoothChatSecure";
 
@@ -53,6 +60,7 @@ public class BluetoothChatService {
         mState = STATE_NONE;
         mNewState = mState;
         mHandler = handler;
+        database = AppDatabase.getDatabase(context);
     }
 
     /**
@@ -169,6 +177,8 @@ public class BluetoothChatService {
         bundle.putString(Constants.DEVICE_NAME, device.getName());
         msg.setData(bundle);
         mHandler.sendMessage(msg);
+
+
         // atualizar a UI
         updateUserInterfaceTitle();
     }
@@ -429,6 +439,30 @@ public class BluetoothChatService {
             Log.i("BluetoothChatService", "BEGIN mConnectedThread");
             byte[] buffer = new byte[1024];
             int bytes;
+
+            //Mandar posts :)
+            Log.d("BBluetoothChatService", "start of bullshit");
+            List<Post> allposts = database.getDao().getAllPosts();
+
+            Message msg2;
+
+            for (Post p : allposts) {
+                Log.d("BluetoothChatService", "Got in here bro");
+                Log.d("BluetoothChatService", "autor: " + p.getPost_author());
+                Log.d("BluetoothChatService", "Mensagem: " + p.getMessage());
+
+                //msg2 = mHandler.obtainMessage(Constants.MESSAGE_POST);
+                //Bundle bundle2 = new Bundle();
+                //bundle2.putString(Constants.DEVICE_NAME, p.getPost_author().trim() + " " + p.getMessage());
+                //msg2.setData(bundle2);
+                //mHandler.sendMessage(msg2);
+
+                String inputString = "@ " + p.getPostID() + " " + p.getPost_author().trim() + " " + p.getMessage();
+                byte[] byteArrray = inputString.getBytes();
+                write(byteArrray);
+            }
+
+            Log.d("BluetoothChatFragmentSe", "end of bullshit");
 
             // Continuar ouvindo a InputStream enquanto conectada
             while (mState == STATE_CONNECTED) {

@@ -1,5 +1,6 @@
 package com.example.socialapp.data.base;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -8,8 +9,8 @@ import java.io.Serializable;
 
 @Entity
 public class Post implements Serializable {
-    @PrimaryKey (autoGenerate = true)
-    long postID;
+    @PrimaryKey @NonNull
+    String postID;
 
     @ColumnInfo
     private String message;
@@ -19,6 +20,14 @@ public class Post implements Serializable {
 
     @ColumnInfo
     private String post_author;
+
+    public void setPostID(String postID) {
+        this.postID = postID;
+    }
+
+    public String getPostID() {
+        return postID;
+    }
 
     public String getPost_author() {
         return post_author;

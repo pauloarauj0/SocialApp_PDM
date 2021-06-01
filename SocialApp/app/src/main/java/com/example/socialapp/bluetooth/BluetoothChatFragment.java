@@ -33,6 +33,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.socialapp.R;
+import com.example.socialapp.data.base.AppDatabase;
+import com.example.socialapp.data.base.Post;
+import com.example.socialapp.recyclerview.Feed;
 
 
 /**
@@ -44,6 +47,8 @@ public class BluetoothChatFragment extends Fragment {
     private static final int REQUEST_CONNECT_DEVICE_SECURE = 1;
     private static final int REQUEST_CONNECT_DEVICE_INSECURE = 2;
     private static final int REQUEST_ENABLE_BT = 3;
+
+    AppDatabase database;
 
     // Layout
     private ListView mConversationView;
@@ -65,6 +70,7 @@ public class BluetoothChatFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        database = AppDatabase.getDatabase(getContext());
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         // Pegar o adaptador bluetooth
@@ -284,12 +290,39 @@ public class BluetoothChatFragment extends Fragment {
                 byte[] writeBuf = (byte[]) msg.obj;
                 // construir string do buffer para adicionar ao arrayadapter
                 String writeMessage = new String(writeBuf);
-                mConversationArrayAdapter.add("Me:  " + writeMessage);
+                if(writeMessage.length() != 0){
+                    if(writeMessage.charAt(0) == '@'){
+                        //don't wanna send this message to ourselves
+                    }else{
+                        mConversationArrayAdapter.add("Me:  " + writeMessage);
+                    }
+                }
+
             } else if (msg.what == Constants.MESSAGE_READ) {
                 byte[] readBuf = (byte[]) msg.obj;
                 // construir string do buffer recebido
                 String readMessage = new String(readBuf, 0, msg.arg1);
-                mConversationArrayAdapter.add(mConnectedDeviceName + ":  " + readMessage);
+                if(readMessage.length() != 0){
+                    if(readMessage.charAt(0) == '@'){
+                        //it's a post horray
+                        Log.d("BluetoothChatFragment", "You received a post :) POST: " + readMessage);
+
+                        String[] parts = readMessage.split(" ", 4);
+                        if(!parts[3].contains("@")){
+                            Post p = new Post();
+                            Log.d("BluetoothChatFragment", "Post ID: " + parts[1]);
+                            Log.d("BluetoothChatFragment", "Autor " + parts[2]);
+                            Log.d("BluetoothChatFragment", "Message: " + parts[3]);
+                            p.setPostID(parts[1]);
+                            p.setPost_author(parts[2]);
+                            p.setMessage(parts[3]);
+
+                            database.getDao().insertPost(p);
+                        }
+                    }else{
+                        mConversationArrayAdapter.add(mConnectedDeviceName + ":  " + readMessage);
+                    }
+                }
             } else if (msg.what == Constants.MESSAGE_DEVICE_NAME) {// save the connected device's name
                 mConnectedDeviceName = msg.getData().getString(Constants.DEVICE_NAME);
                 if (null != activity) {
@@ -301,6 +334,24 @@ public class BluetoothChatFragment extends Fragment {
                     Toast.makeText(activity, msg.getData().getString(Constants.TOAST),
                             Toast.LENGTH_SHORT).show();
                 }
+            } else if(msg.what == Constants.MESSAGE_POST){
+                //do stuff :)
+                /*
+                String elPost = msg.getData().getString(Constants.DEVICE_NAME);
+                Log.d("BluetoothChatFragment", "POST: " + elPost);
+
+                String[] stuff = elPost.split(" ", 2);
+                //eu estav aaqui :)
+
+                Log.d("BluetoothChatFragment", "POST: " + stuff[0]);
+                Log.d("BluetoothChatFragment", "POST: " + stuff[1]);
+
+                Post p = new Post();
+                p.setPost_author(stuff[0]);
+                p.setMessage(stuff[1]);
+                database.getDao().insertPost(p);
+
+                */
             }
         }
     };

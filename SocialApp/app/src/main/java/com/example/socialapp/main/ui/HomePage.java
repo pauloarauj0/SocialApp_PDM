@@ -22,6 +22,9 @@ import com.example.socialapp.data.base.AppDatabase;
 import com.example.socialapp.data.base.Post;
 import com.example.socialapp.recyclerview.Feed;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class HomePage extends AppCompatActivity {
 
     private Button chat;
@@ -52,6 +55,7 @@ public class HomePage extends AppCompatActivity {
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Date currentTime = Calendar.getInstance().getTime();
                 Log.v("HOMEPAGE ", "Clicou em Post");
                 String message = textField.getText().toString();
                 if(message.equals("")){
@@ -59,6 +63,8 @@ public class HomePage extends AppCompatActivity {
                 }
                 else{
                     Post p = new Post();
+                    p.setPostID(("" + currentTime + MainActivity.AccAtual.getUserName()).trim().replaceAll(" ", ""));
+                    Log.v("HOMEPAGE ", "Post ID: " + ("" + currentTime + MainActivity.AccAtual.getUserName()).trim().replaceAll(" ", ""));
                     p.setPost_author(MainActivity.AccAtual.getUserName());
                     p.setMessage(message);
                     database.getDao().insertPost(p);

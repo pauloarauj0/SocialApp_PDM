@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int INVALID = -1;
     private EditText email;
     private EditText senha;
+    private ImageView debugSpgBob;
     List<Account> accounts = new ArrayList<>();
     AppDatabase database;
 
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private boolean DEBUG = false;
+    private boolean DEBUG = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,16 @@ public class MainActivity extends AppCompatActivity {
         senha = findViewById(R.id.senha);
         Button login = findViewById(R.id.login);
         TextView create_login = findViewById(R.id.main_create);
+        debugSpgBob = findViewById(R.id.imageLogin);
+
+        debugSpgBob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(DEBUG){
+                    database.getDao().deleteAllPost();
+                }
+            }
+        });
 
         //clicar no botao login e iniciar sessao
         login.setOnClickListener(new View.OnClickListener() {
@@ -56,10 +68,8 @@ public class MainActivity extends AppCompatActivity {
                 String input_senha =  senha.getText().toString();
 
 
-                if(DEBUG){
-                    debugMode();
-                }
-                else{
+
+
                     if(input_email.isEmpty() || input_senha.isEmpty()){
                         Toast.makeText(MainActivity.this, "Um dos campos não foi preenchido", Toast.LENGTH_SHORT).show();
                     }else{
@@ -74,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
 
-                }
+
 
             }
         });
