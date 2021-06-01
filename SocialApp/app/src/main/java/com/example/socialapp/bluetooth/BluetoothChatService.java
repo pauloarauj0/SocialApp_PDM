@@ -13,6 +13,7 @@ import android.util.Log;
 
 import com.example.socialapp.data.base.AppDatabase;
 import com.example.socialapp.data.base.Post;
+import com.example.socialapp.main.ui.MainActivity;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -462,7 +463,20 @@ public class BluetoothChatService {
                 write(byteArrray);
             }
 
+
+
             Log.d("BluetoothChatFragmentSe", "end of bullshit");
+
+            //pegar nome do user
+            /*Message msg = mHandler.obtainMessage(Constants.MESSAGE_DEVICE_NAME);
+            Bundle bundle = new Bundle();
+            bundle.putString(Constants.DEVICE_NAME, MainActivity.AccAtual.getUserName() );
+            msg.setData(bundle);
+            mHandler.sendMessage(msg);
+            */
+            String personName = "# " + MainActivity.AccAtual.getUserName();
+            byte[] byteArrray = personName.getBytes();
+            write(byteArrray);
 
             // Continuar ouvindo a InputStream enquanto conectada
             while (mState == STATE_CONNECTED) {

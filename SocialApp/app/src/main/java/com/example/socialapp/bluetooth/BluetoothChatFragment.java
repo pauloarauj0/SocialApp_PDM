@@ -319,6 +319,9 @@ public class BluetoothChatFragment extends Fragment {
 
                             database.getDao().insertPost(p);
                         }
+                    }else if(readMessage.charAt(0) == '#'){
+                        String[] parts = readMessage.split(" ", 2);
+                        mConnectedDeviceName = parts[1];
                     }else{
                         mConversationArrayAdapter.add(mConnectedDeviceName + ":  " + readMessage);
                     }
