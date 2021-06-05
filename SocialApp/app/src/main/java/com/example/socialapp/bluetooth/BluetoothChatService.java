@@ -474,9 +474,9 @@ public class BluetoothChatService {
             msg.setData(bundle);
             mHandler.sendMessage(msg);
             */
-            String personName = "# " + MainActivity.AccAtual.getUserName();
-            byte[] byteArrray = personName.getBytes();
-            write(byteArrray);
+            //String personName = "# " + MainActivity.AccAtual.getUserName();
+            //byte[] byteArrray = personName.getBytes();
+            //write(byteArrray);
 
             // Continuar ouvindo a InputStream enquanto conectada
             while (mState == STATE_CONNECTED) {

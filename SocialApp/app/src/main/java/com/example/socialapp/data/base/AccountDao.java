@@ -45,7 +45,7 @@ public interface AccountDao {
 
 
     //----------------------------POST----------------------------
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertPost(Post post);
 
     @Delete

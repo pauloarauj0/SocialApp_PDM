@@ -307,7 +307,7 @@ public class BluetoothChatFragment extends Fragment {
                         //it's a post horray
                         Log.d("BluetoothChatFragment", "You received a post :) POST: " + readMessage);
 
-                        String[] parts = readMessage.split(" ", 4);
+                        String[] parts = readMessage.split(" ");
                         if(!parts[3].contains("@")){
                             Post p = new Post();
                             Log.d("BluetoothChatFragment", "Post ID: " + parts[1]);
