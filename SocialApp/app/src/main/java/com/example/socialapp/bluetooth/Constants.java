@@ -18,4 +18,10 @@ public interface Constants {
     String DEVICE_NAME = "device_name";
     String TOAST = "toast";
 
+    //caracteres especiais para identificacao de mensagens
+
+    char CHAR_POST = '@';
+    char CHAR_NAME = '#';
+    String STR_SEPARATOR = " " ;
+
 }
