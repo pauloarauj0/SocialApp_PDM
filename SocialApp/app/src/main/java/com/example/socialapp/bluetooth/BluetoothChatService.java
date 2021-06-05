@@ -72,7 +72,7 @@ public class BluetoothChatService {
         Log.d("BluetoothChatService", "updateUserInterfaceTitle() " + mNewState + " -> " + mState);
         mNewState = mState;
 
-        // Give the new state to the Handler so the UI Activity can update
+        // Dar o novo estado ao handler
         mHandler.obtainMessage(Constants.MESSAGE_STATE_CHANGE, mNewState, -1).sendToTarget();
     }
 
@@ -441,8 +441,7 @@ public class BluetoothChatService {
             byte[] buffer = new byte[1024];
             int bytes;
 
-            //Mandar posts :)
-            Log.d("BBluetoothChatService", "start of bullshit");
+          
             List<Post> allposts = database.getDao().getAllPosts();
 
             Message msg2;
@@ -452,11 +451,7 @@ public class BluetoothChatService {
                 Log.d("BluetoothChatService", "autor: " + p.getPost_author());
                 Log.d("BluetoothChatService", "Mensagem: " + p.getMessage());
 
-                //msg2 = mHandler.obtainMessage(Constants.MESSAGE_POST);
-                //Bundle bundle2 = new Bundle();
-                //bundle2.putString(Constants.DEVICE_NAME, p.getPost_author().trim() + " " + p.getMessage());
-                //msg2.setData(bundle2);
-                //mHandler.sendMessage(msg2);
+             
 
                 String inputString = "@ " + p.getPostID() + " " + p.getPost_author().trim() + " " + p.getMessage();
                 byte[] byteArrray = inputString.getBytes();
@@ -465,18 +460,9 @@ public class BluetoothChatService {
 
 
 
-            Log.d("BluetoothChatFragmentSe", "end of bullshit");
+      
 
-            //pegar nome do user
-            /*Message msg = mHandler.obtainMessage(Constants.MESSAGE_DEVICE_NAME);
-            Bundle bundle = new Bundle();
-            bundle.putString(Constants.DEVICE_NAME, MainActivity.AccAtual.getUserName() );
-            msg.setData(bundle);
-            mHandler.sendMessage(msg);
-            */
-            //String personName = "# " + MainActivity.AccAtual.getUserName();
-            //byte[] byteArrray = personName.getBytes();
-            //write(byteArrray);
+         
 
             // Continuar ouvindo a InputStream enquanto conectada
             while (mState == STATE_CONNECTED) {
