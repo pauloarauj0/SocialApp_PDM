@@ -57,15 +57,6 @@ public interface AccountDao {
     @Query("SELECT * FROM post")
     List<Post> getAllPosts();
 
-    //----------------------------FriendList-----------------------
-
-    @Insert
-    void insertFriend(FriendList friend);
-
-    @Query("SELECT friend FROM FriendList WHERE user_name = :name")
-    List<String> getAllFriends(String name);
-
-
 
 
 

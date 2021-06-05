@@ -2,7 +2,6 @@ package com.example.socialapp.main.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Database;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -20,7 +19,6 @@ import android.widget.Toast;
 import com.example.socialapp.R;
 import com.example.socialapp.bluetooth.BluetoothChatHub;
 import com.example.socialapp.data.base.AppDatabase;
-import com.example.socialapp.data.base.FriendList;
 import com.example.socialapp.data.base.Post;
 import com.example.socialapp.recyclerview.Feed;
 
@@ -31,7 +29,6 @@ public class HomePage extends AppCompatActivity {
 
     private Button chat;
     private Button post;
-    private Button fren;
     private EditText textField;
     AppDatabase database;
 
@@ -44,43 +41,6 @@ public class HomePage extends AppCompatActivity {
         chat = findViewById(R.id.home_chat);
         post = findViewById(R.id.post_btn);
         textField = findViewById(R.id.insert_post);
-
-        //debug
-        fren = findViewById(R.id.debugFriend);
-
-        fren.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FriendList amigo = new FriendList();
-                amigo.setUserName(MainActivity.AccAtual.getUserName());
-                for(int i = 0; i<4; i++){
-                    amigo.setFriend("Amigo n" + i);
-                    database.getDao().insertFriend(amigo);
-                }
-
-                Post p = new Post();
-                p.setPostID("x");
-                p.setPost_author("Amigo n1");
-                p.setMessage("I am your n1 friend");
-
-                database.getDao().insertPost(p);
-
-                Post p2 = new Post();
-                p2.setPostID("x2");
-                p2.setPost_author("n7");
-                p2.setMessage("I am your n7 friend");
-
-                database.getDao().insertPost(p2);
-
-
-                Log.d("HOMEPAGE ", "Amigos de " + MainActivity.AccAtual.getUserName());
-
-                for(String amig : database.getDao().getAllFriends(MainActivity.AccAtual.getUserName())){
-                    Log.d("HOMEPAGE ", "Amigo: " + amig);
-                }
-            }
-        });
-
         //entrar no chat
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
