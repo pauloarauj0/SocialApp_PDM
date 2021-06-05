@@ -96,7 +96,7 @@ public class BluetoothChatFragment extends Fragment {
         if (!mBluetoothAdapter.isEnabled()) {
             Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
-            // Otherwise, setup the chat session
+            // se nao, comecar o chat
         } else if (mChatService == null) {
             setupChat();
         }
@@ -146,7 +146,7 @@ public class BluetoothChatFragment extends Fragment {
     private void setupChat() {
         Log.d("BluetoothChatFragment", "setupChat()");
 
-        // Initialize the array adapter for the conversation thread
+        // comecar o arrayadapter
         FragmentActivity activity = getActivity();
         if (activity == null) {
             return;
@@ -292,7 +292,7 @@ public class BluetoothChatFragment extends Fragment {
                 String writeMessage = new String(writeBuf);
                 if(writeMessage.length() != 0){
                     if(writeMessage.charAt(0) == '@'){
-                        //don't wanna send this message to ourselves
+                        //nao mandar um posts para eu proprio
                     }else{
                         mConversationArrayAdapter.add("Me:  " + writeMessage);
                     }
@@ -304,8 +304,8 @@ public class BluetoothChatFragment extends Fragment {
                 String readMessage = new String(readBuf, 0, msg.arg1);
                 if(readMessage.length() != 0){
                     if(readMessage.charAt(0) == '@'){
-                        //it's a post horray
-                        Log.d("BluetoothChatFragment", "You received a post :) POST: " + readMessage);
+                        
+                        Log.d("BluetoothChatFragment", "You received a post  POST: " + readMessage);
 
                         String[] parts = readMessage.split(" ");
                         if(!parts[3].contains("@")){
@@ -338,23 +338,7 @@ public class BluetoothChatFragment extends Fragment {
                             Toast.LENGTH_SHORT).show();
                 }
             } else if(msg.what == Constants.MESSAGE_POST){
-                //do stuff :)
-                /*
-                String elPost = msg.getData().getString(Constants.DEVICE_NAME);
-                Log.d("BluetoothChatFragment", "POST: " + elPost);
-
-                String[] stuff = elPost.split(" ", 2);
-                //eu estav aaqui :)
-
-                Log.d("BluetoothChatFragment", "POST: " + stuff[0]);
-                Log.d("BluetoothChatFragment", "POST: " + stuff[1]);
-
-                Post p = new Post();
-                p.setPost_author(stuff[0]);
-                p.setMessage(stuff[1]);
-                database.getDao().insertPost(p);
-
-                */
+                
             }
         }
     };
