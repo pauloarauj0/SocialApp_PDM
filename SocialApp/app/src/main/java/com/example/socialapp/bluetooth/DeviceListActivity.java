@@ -174,7 +174,7 @@ public class DeviceListActivity extends Activity {
 
             // Quando um dispositivo e achado...
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-                // Betar o BluetoothDevice do intent
+                // Botar o BluetoothDevice do intent
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 // Pular a parte de lista-lo se ja esta pairado, caso contrario seria listado 2 vezes
                 if (device != null && device.getBondState() != BluetoothDevice.BOND_BONDED) {
